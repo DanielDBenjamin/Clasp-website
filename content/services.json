@@ -1,43 +1,43 @@
 {
   "sectionLabel": "CAPABILITIES",
-  "heading": "Security Solutions",
-  "description": "Comprehensive protection across your entire digital infrastructure",
+  "heading": "Compliance Services",
+  "description": "End-to-end support for achieving and maintaining cyber compliance with joint standards",
   "services": [
     {
-      "title": "Threat Detection",
-      "description": "Real-time monitoring and AI-powered threat detection to identify and neutralize attacks before they impact your business",
+      "title": "CMMC Readiness",
+      "description": "Prepare your organisation for Cybersecurity Maturity Model Certification with comprehensive gap analysis, remediation planning, and assessment support across all CMMC levels.",
       "icon": "🛡️"
     },
     {
-      "title": "Penetration Testing",
-      "description": "Comprehensive security assessments that expose vulnerabilities and provide actionable remediation strategies",
-      "icon": "🔐"
+      "title": "NIST Framework Alignment",
+      "description": "Map your security posture to NIST 800-171 and NIST CSF controls, with actionable roadmaps to close gaps and demonstrate compliance to assessors.",
+      "icon": "�"
     },
     {
-      "title": "Security Operations",
-      "description": "24/7 SOC services with expert analysts monitoring your infrastructure for suspicious activity",
-      "icon": "👁️"
+      "title": "Joint Standards Consulting",
+      "description": "Navigate the complexities of Joint Standards requirements with expert guidance tailored to your organisation's operational environment and contract obligations.",
+      "icon": "�"
     },
     {
-      "title": "Compliance & Governance",
-      "description": "Navigate complex regulatory requirements with confidence through our compliance frameworks and auditing",
-      "icon": "📋"
+      "title": "Compliance Gap Analysis",
+      "description": "Thorough assessment of your current security controls against required standards, identifying gaps with prioritised remediation strategies and timelines.",
+      "icon": "�"
     },
     {
-      "title": "Incident Response",
-      "description": "Rapid response team ready to contain breaches, investigate root causes, and restore operations",
-      "icon": "🚨"
+      "title": "Policy & Documentation",
+      "description": "Development and review of System Security Plans (SSP), Plan of Action & Milestones (POA&M), and all supporting compliance documentation.",
+      "icon": "�"
     },
     {
-      "title": "Security Training",
-      "description": "Empower your team with security awareness training and simulated phishing campaigns",
+      "title": "Compliance Training",
+      "description": "Equip your team with the knowledge to maintain compliance posture day-to-day, covering CUI handling, access controls, and audit readiness.",
       "icon": "🎓"
     }
   ],
   "stats": [
-    { "number": "99.9%", "label": "Threat Detection Rate" },
-    { "number": "24/7", "label": "Security Monitoring" },
-    { "number": "<15min", "label": "Average Response Time" },
-    { "number": "500+", "label": "Enterprises Protected" }
+    { "number": "100%", "label": "Assessment Pass Rate" },
+    { "number": "200+", "label": "Organisations Certified" },
+    { "number": "50+", "label": "Joint Standards Engagements" },
+    { "number": "3", "label": "CMMC Levels Supported" }
   ]
 }
