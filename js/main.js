@@ -107,17 +107,22 @@ function initScrollAnimations() {
 // Highlight the active page in the nav
 function initActiveNav() {
   var path = window.location.pathname;
-  var page = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
+  // Get the last segment of the path, e.g. "/services.html" → "services.html", "/services" → "services"
+  var page = path.substring(path.lastIndexOf('/') + 1);
 
-  // Treat root "/" as index.html
-  if (page === '' || page === '/') page = 'index.html';
+  // Normalize: strip .html extension and treat empty (root "/") as "index"
+  page = page.replace('.html', '') || 'index';
 
   document.querySelectorAll('nav ul a').forEach(function (link) {
     var href = link.getAttribute('href');
 
-    // Only match exact page links (e.g. "services.html", "about.html", "index.html")
     // Skip links with hash fragments like "index.html#contact"
-    if (href === page) {
+    if (href.indexOf('#') !== -1) return;
+
+    // Normalize href the same way: "services.html" → "services", "index.html" → "index"
+    var hrefPage = href.replace('.html', '');
+
+    if (hrefPage === page) {
       link.classList.add('nav-active');
     }
   });
@@ -127,7 +132,7 @@ function initActiveNav() {
 document.addEventListener('DOMContentLoaded', async function () {
   // Only load and populate CMS content on the home page
   var path = window.location.pathname;
-  var isHomePage = path === '/' || path.endsWith('/index.html') || path.endsWith('/');
+  var isHomePage = path === '/' || path === '/index' || path === '/index.html' || path.endsWith('/');
 
   if (isHomePage) {
     var hero = await loadJSON('/content/hero.json');
