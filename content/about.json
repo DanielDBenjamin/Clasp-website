@@ -20,6 +20,12 @@
       "role": "SOC Director",
       "bio": "Led incident response for multiple Fortune 100 companies",
       "image": "/images/team-3.jpg"
+    },
+    {
+      "name": "Daniel Benjamin",
+      "role": "Intern",
+      "image": "/images/clasp-background-1-.png",
+      "bio": "Cool guy!"
     }
   ]
 }
