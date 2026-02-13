@@ -1,169 +1,144 @@
-// Load all content files
-async function loadContent() {
-    try {
-      const [hero, services, about, contact] = await Promise.all([
-        fetch('/content/hero.json').then(r => r.json()),
-        fetch('/content/services.json').then(r => r.json()),
-        fetch('/content/about.json').then(r => r.json()),
-        fetch('/content/contact.json').then(r => r.json())
-      ]);
-      
-      return { hero, services, about, contact };
-    } catch (error) {
-      console.error('Error loading content:', error);
-      return null;
-    }
+// Load a single JSON content file
+async function loadJSON(path) {
+  try {
+    const response = await fetch(path);
+    if (!response.ok) throw new Error('Failed to load ' + path);
+    return await response.json();
+  } catch (error) {
+    console.error(error);
+    return null;
   }
-  
-  // Populate hero section
-  function populateHero(hero) {
-    const badge = document.querySelector('.hero-badge');
-    const headline = document.querySelector('.hero h1');
-    const subheadline = document.querySelector('.hero p');
-    const ctaBtn = document.querySelector('.btn-primary');
-    const secondaryBtn = document.querySelector('.btn-secondary');
-    
-    if (badge) badge.textContent = hero.badge;
-    if (headline) {
-      const parts = hero.headline.split(' ');
-      const lastTwo = parts.slice(-2).join(' ');
-      const rest = parts.slice(0, -2).join(' ');
-      headline.innerHTML = `${rest} <span class="highlight">${lastTwo}</span>`;
-    }
-    if (subheadline) subheadline.textContent = hero.subheadline;
-    if (ctaBtn) {
-      ctaBtn.textContent = hero.ctaText;
-      ctaBtn.href = hero.ctaLink;
-    }
-    if (secondaryBtn) {
-      secondaryBtn.textContent = hero.secondaryCtaText;
-      secondaryBtn.href = hero.secondaryCtaLink;
-    }
+}
+
+// Populate hero section (text only — links stay as defined in HTML)
+function populateHero(hero) {
+  if (!hero) return;
+
+  const section = document.querySelector('.hero');
+  if (!section) return;
+
+  const badge = section.querySelector('.hero-badge');
+  const headline = section.querySelector('h1');
+  const subheadline = section.querySelector('.hero-content > p');
+
+  if (badge) badge.textContent = hero.badge;
+  if (headline) {
+    const words = hero.headline.split(' ');
+    const highlighted = words.slice(-2).join(' ');
+    const rest = words.slice(0, -2).join(' ');
+    headline.innerHTML = rest + ' <span class="highlight">' + highlighted + '</span>';
   }
-  
-  // Populate stats
-  function populateStats(stats) {
-    const statsGrid = document.getElementById('stats-grid');
-    if (!statsGrid) return;
-    
-    statsGrid.innerHTML = stats.map(stat => `
-      <div class="stat-card">
-        <div class="stat-number">${stat.number}</div>
-        <div class="stat-label">${stat.label}</div>
-      </div>
-    `).join('');
-  }
-  
-  // Populate services
-  function populateServices(data) {
-    const sectionLabel = document.querySelector('#services .section-label');
-    const sectionHeading = document.querySelector('#services h2');
-    const sectionDesc = document.querySelector('#services .section-header p');
-    const servicesGrid = document.getElementById('services-grid');
-    
-    if (sectionLabel) sectionLabel.textContent = data.sectionLabel;
-    if (sectionHeading) sectionHeading.textContent = data.heading;
-    if (sectionDesc) sectionDesc.textContent = data.description;
-    
-    if (servicesGrid) {
-      servicesGrid.innerHTML = data.services.map(service => `
-        <div class="card">
-          <div class="card-content">
-            <span class="icon">${service.icon}</span>
-            <h3>${service.title}</h3>
-            <p>${service.description}</p>
-          </div>
-        </div>
-      `).join('');
-    }
-  }
-  
-  // Populate contact section
-  function populateContact(contact) {
-    const headline = document.querySelector('#contact h2');
-    const description = document.querySelector('#contact .section-header p');
-    
-    if (headline) headline.textContent = contact.headline;
-    if (description) description.textContent = contact.description;
-  }
-  
-  // Initialize smooth scrolling
-  function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+  if (subheadline) subheadline.textContent = hero.subheadline;
+}
+
+// Populate contact section
+function populateContact(contact) {
+  if (!contact) return;
+
+  const headline = document.querySelector('#contact h2');
+  const description = document.querySelector('#contact .section-header p');
+
+  if (headline) headline.textContent = contact.headline;
+  if (description) description.textContent = contact.description;
+}
+
+// Smooth scrolling for anchor links only
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener('click', function (e) {
+      var targetId = this.getAttribute('href');
+      var target = document.querySelector(targetId);
+      if (target) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-      });
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
-  }
-  
-  // Initialize contact form
-  function initContactForm() {
-    const form = document.getElementById('contact-form');
-    if (!form) return;
-  
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const formData = new FormData(form);
-      const data = Object.fromEntries(formData);
-      console.log('Security assessment request:', data);
-      
-      const btn = form.querySelector('.btn-primary');
-      const originalText = btn.textContent;
-      btn.textContent = '✓ Request Submitted!';
-      btn.style.background = 'var(--color-secondary)';
-      btn.disabled = true;
-      
-      setTimeout(() => {
-        btn.textContent = originalText;
-        btn.style.background = '';
-        btn.disabled = false;
-        form.reset();
-      }, 3000);
-    });
-  }
-  
-  // Initialize scroll animations
-  function initScrollAnimations() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+  });
+}
+
+// Contact form handling
+function initContactForm() {
+  var form = document.getElementById('contact-form');
+  if (!form) return;
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var formData = new FormData(form);
+    var data = Object.fromEntries(formData);
+    console.log('Security assessment request:', data);
+
+    var btn = form.querySelector('button[type="submit"]');
+    if (!btn) return;
+
+    var originalText = btn.textContent;
+    btn.textContent = '✓ Request Submitted!';
+    btn.style.background = 'var(--color-secondary)';
+    btn.disabled = true;
+
+    setTimeout(function () {
+      btn.textContent = originalText;
+      btn.style.background = '';
+      btn.disabled = false;
+      form.reset();
+    }, 3000);
+  });
+}
+
+// Scroll-triggered fade-in animations
+function initScrollAnimations() {
+  var observer = new IntersectionObserver(
+    function (entries) {
+      entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('fade-in');
         }
       });
-    }, {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    });
-  
-    setTimeout(() => {
-      document.querySelectorAll('.card, .stat-card').forEach(el => {
-        observer.observe(el);
-      });
-    }, 100);
-  }
-  
-  // Initialize everything
-  document.addEventListener('DOMContentLoaded', async () => {
-    const content = await loadContent();
-    
-    // Only populate home-page-specific sections when on the home page
-    const isHomePage = window.location.pathname === '/' ||
-                       window.location.pathname.endsWith('index.html');
+    },
+    { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+  );
 
-    if (content) {
-      if (isHomePage) {
-        populateHero(content.hero);
-        populateStats(content.services.stats);
-        populateServices(content.services);
-        populateContact(content.contact);
-      }
+  setTimeout(function () {
+    document.querySelectorAll('.card, .stat-card').forEach(function (el) {
+      observer.observe(el);
+    });
+  }, 100);
+}
+
+// Highlight the active page in the nav
+function initActiveNav() {
+  var path = window.location.pathname;
+  var page = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
+
+  // Treat root "/" as index.html
+  if (page === '' || page === '/') page = 'index.html';
+
+  document.querySelectorAll('nav ul a').forEach(function (link) {
+    var href = link.getAttribute('href');
+
+    // Only match exact page links (e.g. "services.html", "about.html", "index.html")
+    // Skip links with hash fragments like "index.html#contact"
+    if (href === page) {
+      link.classList.add('nav-active');
     }
-    
-    initSmoothScroll();
-    initContactForm();
-    initScrollAnimations();
   });
+}
+
+// Initialize everything on DOM ready
+document.addEventListener('DOMContentLoaded', async function () {
+  // Only load and populate CMS content on the home page
+  var path = window.location.pathname;
+  var isHomePage = path === '/' || path.endsWith('/index.html') || path.endsWith('/');
+
+  if (isHomePage) {
+    var hero = await loadJSON('/content/hero.json');
+    var contact = await loadJSON('/content/contact.json');
+
+    populateHero(hero);
+    populateContact(contact);
+  }
+
+  initActiveNav();
+  initSmoothScroll();
+  initContactForm();
+  initScrollAnimations();
+});

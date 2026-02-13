@@ -171,7 +171,7 @@ nav ul {
   align-items: center;
 }
 
-nav a {
+nav ul a {
   color: var(--color-text);
   text-decoration: none;
   font-weight: 600;
@@ -183,7 +183,7 @@ nav a {
   padding: 0.5rem 0;
 }
 
-nav a::after {
+nav ul a::after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -195,11 +195,19 @@ nav a::after {
   transition: var(--transition-base);
 }
 
-nav a:hover {
+nav ul a:hover {
   color: var(--color-primary);
 }
 
-nav a:hover::after {
+nav ul a:hover::after {
+  width: 100%;
+}
+
+nav ul a.nav-active {
+  color: var(--color-primary);
+}
+
+nav ul a.nav-active::after {
   width: 100%;
 }
 
@@ -337,6 +345,29 @@ nav a:hover::after {
 }
 
 .btn-secondary:hover {
+  background: var(--color-text);
+  color: var(--color-bg);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  background: transparent;
+  color: var(--color-text);
+  border: 2px solid var(--color-text);
+  cursor: pointer;
+  transition: var(--transition-base);
+}
+
+.btn-outline:hover {
   background: var(--color-text);
   color: var(--color-bg);
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
@@ -581,11 +612,12 @@ footer {
 
 @media (max-width: 768px) {
   nav ul { gap: var(--spacing-sm); }
-  nav a { font-size: 0.85rem; }
+  nav ul a { font-size: 0.85rem; }
   .grid-3, .grid-4 { grid-template-columns: 1fr; }
   .hero { padding: var(--spacing-lg) var(--spacing-sm); }
   .hero-cta { flex-direction: column; }
   .btn { width: 100%; }
+  .btn-outline { width: 100%; }
   section { padding: var(--spacing-lg) 0; }
   .logo-text { display: none; }
 }
