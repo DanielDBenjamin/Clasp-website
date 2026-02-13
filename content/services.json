@@ -1,0 +1,20 @@
+{
+  "title": "What We Do",
+  "items": [
+    {
+      "title": "Consulting",
+      "description": "Expert guidance to help you make informed decisions and achieve your business goals.",
+      "icon": "💼"
+    },
+    {
+      "title": "Development",
+      "description": "Custom solutions built with cutting-edge technology tailored to your specific needs.",
+      "icon": "🚀"
+    },
+    {
+      "title": "Support",
+      "description": "Ongoing assistance and maintenance to ensure your systems run smoothly.",
+      "icon": "🛠️"
+    }
+  ]
+}
