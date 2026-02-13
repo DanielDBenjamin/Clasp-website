@@ -107,11 +107,11 @@ function initScrollAnimations() {
 // Highlight the active page in the nav
 function initActiveNav() {
   var path = window.location.pathname;
-  // Get the last segment of the path, e.g. "/services.html" → "services.html", "/services" → "services"
-  var page = path.substring(path.lastIndexOf('/') + 1);
 
-  // Normalize: strip .html extension and treat empty (root "/") as "index"
-  page = page.replace('.html', '') || 'index';
+  // Normalize the current path:
+  // "/services.html" → "services", "/services" → "services", "/services/" → "services", "/" → "index"
+  var page = path.replace(/\/$/, '').replace(/\.html$/, '');
+  page = page.substring(page.lastIndexOf('/') + 1) || 'index';
 
   document.querySelectorAll('nav ul a').forEach(function (link) {
     var href = link.getAttribute('href');
@@ -120,7 +120,7 @@ function initActiveNav() {
     if (href.indexOf('#') !== -1) return;
 
     // Normalize href the same way: "services.html" → "services", "index.html" → "index"
-    var hrefPage = href.replace('.html', '');
+    var hrefPage = href.replace(/\.html$/, '');
 
     if (hrefPage === page) {
       link.classList.add('nav-active');
