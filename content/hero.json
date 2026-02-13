@@ -1,6 +1,9 @@
 {
-  "headline": "CLASP Cybersecurity",
-  "subline": "Protecting your digital future with cutting-edge security solutions",
-  "cta_text": "Get Started",
-  "cta_url": "#contact"
+  "badge": "⚡ ENTERPRISE SECURITY",
+  "headline": "Protect Your Digital Future",
+  "subheadline": "Enterprise-grade cybersecurity solutions that secure your infrastructure, detect threats in real-time, and ensure compliance.",
+  "ctaText": "Request Assessment",
+  "ctaLink": "#contact",
+  "secondaryCtaText": "Learn More",
+  "secondaryCtaLink": "#services"
 }

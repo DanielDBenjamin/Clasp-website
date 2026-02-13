@@ -1,20 +1,12 @@
 {
-  "title": "Get In Touch",
-  "email": "info@clasp-cybersecurity.com",
-  "phone": "+1 (555) 123-4567",
-  "address": "123 Business St, City, State 12345",
-  "social": [
-    {
-      "name": "LinkedIn",
-      "url": "https://linkedin.com/company/clasp-cybersecurity"
-    },
-    {
-      "name": "Twitter",
-      "url": "https://twitter.com/claspcyber"
-    },
-    {
-      "name": "GitHub",
-      "url": "https://github.com/clasp-cybersecurity"
-    }
-  ]
+  "headline": "Ready to secure your infrastructure?",
+  "description": "Get a free security assessment and see how CLASP can protect your organization from emerging threats.",
+  "email": "security@claspcyber.com",
+  "phone": "+1 (555) SEC-CURE",
+  "address": "2500 Security Boulevard, Suite 400\nSan Francisco, CA 94105",
+  "social": {
+    "twitter": "https://twitter.com/claspcyber",
+    "linkedin": "https://linkedin.com/company/claspcyber",
+    "github": "https://github.com/claspcyber"
+  }
 }

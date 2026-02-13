@@ -1,183 +1,163 @@
-// Content loader for static site
-(function() {
-    'use strict';
-
-    // Set current year in footer
-    document.getElementById('current-year').textContent = new Date().getFullYear();
-
-    // Content files to load
-    const contentFiles = [
-        'content/hero.json',
-        'content/about.json',
-        'content/services.json',
-        'content/contact.json'
-    ];
-
-    // Load all content files
-    async function loadContent() {
-        const contentPromises = contentFiles.map(file => 
-            fetch(file)
-                .then(response => {
-                    if (!response.ok) {
-                        console.warn(`Failed to load ${file}`);
-                        return null;
-                    }
-                    return response.json();
-                })
-                .catch(error => {
-                    console.warn(`Error loading ${file}:`, error);
-                    return null;
-                })
-        );
-
-        const contents = await Promise.all(contentPromises);
-        
-        // Map content to objects
-        const content = {
-            hero: contents[0] || {},
-            about: contents[1] || {},
-            services: contents[2] || {},
-            contact: contents[3] || {}
-        };
-
-        // Populate the page with content
-        populateContent(content);
+// Load all content files
+async function loadContent() {
+    try {
+      const [hero, services, about, contact] = await Promise.all([
+        fetch('/content/hero.json').then(r => r.json()),
+        fetch('/content/services.json').then(r => r.json()),
+        fetch('/content/about.json').then(r => r.json()),
+        fetch('/content/contact.json').then(r => r.json())
+      ]);
+      
+      return { hero, services, about, contact };
+    } catch (error) {
+      console.error('Error loading content:', error);
+      return null;
     }
-
-    // Populate content into DOM
-    function populateContent(content) {
-        // Hero section
-        if (content.hero) {
-            setTextContent('.hero-headline', content.hero.headline);
-            setTextContent('.hero-subline', content.hero.subline);
-            setTextContent('.hero-cta', content.hero.cta_text);
-            if (content.hero.cta_url) {
-                const ctaLink = document.querySelector('.hero-cta');
-                if (ctaLink) {
-                    ctaLink.href = content.hero.cta_url;
-                }
-            }
-        }
-
-        // About section
-        if (content.about) {
-            setTextContent('[data-content="about.title"]', content.about.title);
-            setTextContent('.about-description', content.about.description);
-            // Update nav brand text (the span inside nav-brand)
-            const navBrandSpan = document.querySelector('.nav-brand span');
-            if (navBrandSpan) {
-                navBrandSpan.textContent = content.about.company_name;
-            }
-            setTextContent('[data-content="about.company_name"]', content.about.company_name);
-            
-            // Set about image if provided
-            if (content.about.image) {
-                const imageContainer = document.querySelector('[data-image="about.image"]');
-                if (imageContainer && !imageContainer.querySelector('img')) {
-                    const img = document.createElement('img');
-                    img.src = content.about.image;
-                    img.alt = content.about.title || 'About us';
-                    imageContainer.appendChild(img);
-                }
-            }
-        }
-
-        // Services section
-        if (content.services && content.services.items && Array.isArray(content.services.items)) {
-            const servicesGrid = document.querySelector('.services-grid');
-            if (servicesGrid) {
-                servicesGrid.innerHTML = '';
-                content.services.items.forEach(service => {
-                    const card = createServiceCard(service);
-                    servicesGrid.appendChild(card);
-                });
-            }
-        }
-        if (content.services && content.services.title) {
-            setTextContent('[data-content="services.title"]', content.services.title);
-        }
-
-        // Contact section
-        if (content.contact) {
-            if (content.contact.title) {
-                setTextContent('[data-content="contact.title"]', content.contact.title);
-            }
-            setTextContent('[data-content="contact.email"]', content.contact.email);
-            setTextContent('[data-content="contact.phone"]', content.contact.phone);
-            setTextContent('[data-content="contact.address"]', content.contact.address);
-
-            // Social links
-            if (content.contact.social && Array.isArray(content.contact.social)) {
-                const socialContainer = document.querySelector('.social-links');
-                if (socialContainer) {
-                    socialContainer.innerHTML = '';
-                    content.contact.social.forEach(link => {
-                        const socialLink = document.createElement('a');
-                        socialLink.href = link.url;
-                        socialLink.textContent = link.name;
-                        socialLink.className = 'social-link';
-                        socialLink.target = '_blank';
-                        socialLink.rel = 'noopener noreferrer';
-                        socialContainer.appendChild(socialLink);
-                    });
-                }
-            }
-        }
+  }
+  
+  // Populate hero section
+  function populateHero(hero) {
+    const badge = document.querySelector('.hero-badge');
+    const headline = document.querySelector('.hero h1');
+    const subheadline = document.querySelector('.hero p');
+    const ctaBtn = document.querySelector('.btn-primary');
+    const secondaryBtn = document.querySelector('.btn-secondary');
+    
+    if (badge) badge.textContent = hero.badge;
+    if (headline) {
+      const parts = hero.headline.split(' ');
+      const lastTwo = parts.slice(-2).join(' ');
+      const rest = parts.slice(0, -2).join(' ');
+      headline.innerHTML = `${rest} <span class="highlight">${lastTwo}</span>`;
     }
-
-    // Helper function to set text content
-    function setTextContent(selector, text) {
-        if (!text) return;
-        const element = document.querySelector(selector);
-        if (element) {
-            element.textContent = text;
-        }
+    if (subheadline) subheadline.textContent = hero.subheadline;
+    if (ctaBtn) {
+      ctaBtn.textContent = hero.ctaText;
+      ctaBtn.href = hero.ctaLink;
     }
-
-    // Create a service card element
-    function createServiceCard(service) {
-        const card = document.createElement('div');
-        card.className = 'service-card';
-
-        const icon = document.createElement('div');
-        icon.className = 'service-icon';
-        icon.textContent = service.icon || '⚡';
-        card.appendChild(icon);
-
-        const title = document.createElement('h3');
-        title.className = 'service-title';
-        title.textContent = service.title || '';
-        card.appendChild(title);
-
-        const description = document.createElement('p');
-        description.className = 'service-description';
-        description.textContent = service.description || '';
-        card.appendChild(description);
-
-        return card;
+    if (secondaryBtn) {
+      secondaryBtn.textContent = hero.secondaryCtaText;
+      secondaryBtn.href = hero.secondaryCtaLink;
     }
-
-    // Smooth scrolling for anchor links
+  }
+  
+  // Populate stats
+  function populateStats(stats) {
+    const statsGrid = document.getElementById('stats-grid');
+    if (!statsGrid) return;
+    
+    statsGrid.innerHTML = stats.map(stat => `
+      <div class="stat-card">
+        <div class="stat-number">${stat.number}</div>
+        <div class="stat-label">${stat.label}</div>
+      </div>
+    `).join('');
+  }
+  
+  // Populate services
+  function populateServices(data) {
+    const sectionLabel = document.querySelector('#services .section-label');
+    const sectionHeading = document.querySelector('#services h2');
+    const sectionDesc = document.querySelector('#services .section-header p');
+    const servicesGrid = document.getElementById('services-grid');
+    
+    if (sectionLabel) sectionLabel.textContent = data.sectionLabel;
+    if (sectionHeading) sectionHeading.textContent = data.heading;
+    if (sectionDesc) sectionDesc.textContent = data.description;
+    
+    if (servicesGrid) {
+      servicesGrid.innerHTML = data.services.map(service => `
+        <div class="card">
+          <div class="card-content">
+            <span class="icon">${service.icon}</span>
+            <h3>${service.title}</h3>
+            <p>${service.description}</p>
+          </div>
+        </div>
+      `).join('');
+    }
+  }
+  
+  // Populate contact section
+  function populateContact(contact) {
+    const headline = document.querySelector('#contact h2');
+    const description = document.querySelector('#contact .section-header p');
+    
+    if (headline) headline.textContent = contact.headline;
+    if (description) description.textContent = contact.description;
+  }
+  
+  // Initialize smooth scrolling
+  function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (href === '#') return;
-            
-            e.preventDefault();
-            const target = document.querySelector(href);
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
     });
-
-    // Load content when DOM is ready
-    if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', loadContent);
-    } else {
-        loadContent();
+  }
+  
+  // Initialize contact form
+  function initContactForm() {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+  
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+      console.log('Security assessment request:', data);
+      
+      const btn = form.querySelector('.btn-primary');
+      const originalText = btn.textContent;
+      btn.textContent = '✓ Request Submitted!';
+      btn.style.background = 'var(--color-secondary)';
+      btn.disabled = true;
+      
+      setTimeout(() => {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+        form.reset();
+      }, 3000);
+    });
+  }
+  
+  // Initialize scroll animations
+  function initScrollAnimations() {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-in');
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+  
+    setTimeout(() => {
+      document.querySelectorAll('.card, .stat-card').forEach(el => {
+        observer.observe(el);
+      });
+    }, 100);
+  }
+  
+  // Initialize everything
+  document.addEventListener('DOMContentLoaded', async () => {
+    const content = await loadContent();
+    
+    if (content) {
+      populateHero(content.hero);
+      populateStats(content.services.stats);
+      populateServices(content.services);
+      populateContact(content.contact);
     }
-})();
+    
+    initSmoothScroll();
+    initContactForm();
+    initScrollAnimations();
+  });

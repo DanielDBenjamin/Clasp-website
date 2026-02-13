@@ -1,66 +1,83 @@
 backend:
-  name: github
-  repo: DanielDBenjamin/Clasp-website  # Update this with your GitHub username/org and repo name
-  branch: main  # Branch to update (optional, defaults to master)
+  name: git-gateway
+  branch: main
 
-media_folder: "images"  # Media files will be stored in the repo under images
-public_folder: "/images"  # The src attribute for uploaded media will begin with /images
+# For local testing: run `npx decap-server` in terminal
+local_backend: true
+
+media_folder: "static/images"
+public_folder: "/images"
 
 collections:
-  - name: "hero"
-    label: "Hero Section"
+  - name: "content"
+    label: "Website Content"
     files:
-      - file: "content/hero.json"
-        label: "Hero Content"
-        name: "hero"
+      # Hero Section
+      - name: "hero"
+        label: "Hero Section"
+        file: "content/hero.json"
         fields:
-          - {label: "Headline", name: "headline", widget: "string"}
-          - {label: "Subline", name: "subline", widget: "string"}
-          - {label: "CTA Text", name: "cta_text", widget: "string"}
-          - {label: "CTA URL", name: "cta_url", widget: "string"}
+          - { label: "Badge Text", name: "badge", widget: "string" }
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Subheadline", name: "subheadline", widget: "text" }
+          - { label: "CTA Button Text", name: "ctaText", widget: "string" }
+          - { label: "CTA Button Link", name: "ctaLink", widget: "string" }
+          - { label: "Secondary CTA Text", name: "secondaryCtaText", widget: "string" }
+          - { label: "Secondary CTA Link", name: "secondaryCtaLink", widget: "string" }
 
-  - name: "about"
-    label: "About Section"
-    files:
-      - file: "content/about.json"
-        label: "About Content"
-        name: "about"
+      # Services
+      - name: "services"
+        label: "Services & Stats"
+        file: "content/services.json"
         fields:
-          - {label: "Company Name", name: "company_name", widget: "string"}
-          - {label: "Title", name: "title", widget: "string"}
-          - {label: "Description", name: "description", widget: "text"}
-          - {label: "Image", name: "image", widget: "image", required: false}
-
-  - name: "services"
-    label: "Services Section"
-    files:
-      - file: "content/services.json"
-        label: "Services Content"
-        name: "services"
-        fields:
-          - {label: "Section Title", name: "title", widget: "string"}
+          - { label: "Section Label", name: "sectionLabel", widget: "string" }
+          - { label: "Heading", name: "heading", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
           - label: "Services"
-            name: "items"
+            name: "services"
             widget: "list"
             fields:
-              - {label: "Title", name: "title", widget: "string"}
-              - {label: "Description", name: "description", widget: "text"}
-              - {label: "Icon", name: "icon", widget: "string", required: false}
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Icon (Emoji)", name: "icon", widget: "string", hint: "Use an emoji like 🛡️" }
+          - label: "Stats"
+            name: "stats"
+            widget: "list"
+            fields:
+              - { label: "Number", name: "number", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
 
-  - name: "contact"
-    label: "Contact Section"
-    files:
-      - file: "content/contact.json"
-        label: "Contact Content"
-        name: "contact"
+      # About Page
+      - name: "about"
+        label: "About Page"
+        file: "content/about.json"
         fields:
-          - {label: "Section Title", name: "title", widget: "string"}
-          - {label: "Email", name: "email", widget: "string"}
-          - {label: "Phone", name: "phone", widget: "string"}
-          - {label: "Address", name: "address", widget: "string"}
-          - label: "Social Links"
-            name: "social"
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Story", name: "story", widget: "text", hint: "Use \\n\\n for paragraph breaks" }
+          - { label: "Mission Statement", name: "mission", widget: "string" }
+          - label: "Team Members"
+            name: "team"
             widget: "list"
             fields:
-              - {label: "Name", name: "name", widget: "string"}
-              - {label: "URL", name: "url", widget: "string"}
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Role", name: "role", widget: "string" }
+              - { label: "Bio", name: "bio", widget: "text" }
+              - { label: "Photo", name: "image", widget: "image" }
+
+      # Contact Page
+      - name: "contact"
+        label: "Contact Information"
+        file: "content/contact.json"
+        fields:
+          - { label: "Headline", name: "headline", widget: "string" }
+          - { label: "Description", name: "description", widget: "text" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Phone", name: "phone", widget: "string" }
+          - { label: "Address", name: "address", widget: "text" }
+          - label: "Social Media"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Twitter", name: "twitter", widget: "string" }
+              - { label: "LinkedIn", name: "linkedin", widget: "string" }
+              - { label: "GitHub", name: "github", widget: "string" }

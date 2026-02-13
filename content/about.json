@@ -1,6 +1,25 @@
 {
-  "company_name": "CLASP",
-  "title": "About Us",
-  "description": "CLASP Cybersecurity is a forward-thinking company dedicated to delivering exceptional security solutions and innovative protection for our clients. Our team combines expertise with passion to help businesses thrive securely in today's digital landscape.",
-  "image": ""
+  "headline": "Built by security experts, for security leaders",
+  "story": "Founded in 2018 by a team of former government security analysts and penetration testers, CLASP was born from a simple observation: enterprises needed cybersecurity that could keep pace with increasingly sophisticated threats.\n\nToday, we protect over 500 organizations across 40 countries, from startups to Fortune 500 companies. Our team of certified security professionals brings decades of combined experience in offensive security, threat intelligence, and security operations.",
+  "mission": "To make enterprise-grade cybersecurity accessible, proactive, and effective for organizations of all sizes.",
+  "team": [
+    {
+      "name": "Alex Martinez",
+      "role": "Chief Security Officer",
+      "bio": "15+ years in offensive security, former NSA analyst",
+      "image": "/images/team-1.jpg"
+    },
+    {
+      "name": "Dr. Emily Wang",
+      "role": "Head of Research",
+      "bio": "PhD in Cryptography, published researcher in zero-knowledge proofs",
+      "image": "/images/team-2.jpg"
+    },
+    {
+      "name": "Jordan Blake",
+      "role": "SOC Director",
+      "bio": "Led incident response for multiple Fortune 100 companies",
+      "image": "/images/team-3.jpg"
+    }
+  ]
 }

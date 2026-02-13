@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CLASP Cybersecurity - Enterprise-grade security solutions">
-  <title>CLASP | Cybersecurity</title>
+  <meta name="description" content="CLASP Cybersecurity Services - Enterprise security solutions">
+  <title>Services | CLASP Cybersecurity</title>
   <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
@@ -22,31 +22,41 @@
         </div>
       </a>
       <ul>
-        <li><a href="#home">HOME</a></li>
+        <li><a href="index.html">HOME</a></li>
         <li><a href="services.html">SERVICES</a></li>
         <li><a href="about.html">ABOUT</a></li>
-        <li><a href="#contact">CONTACT</a></li>
+        <li><a href="index.html#contact">CONTACT</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Hero Section -->
-  <section class="hero" id="home">
+  <!-- Services Hero -->
+  <section class="hero" style="min-height: 60vh;">
     <div class="hero-content">
-      <div class="hero-badge">⚡ ENTERPRISE SECURITY</div>
-      <h1>Protect Your <span class="highlight">Digital Future</span></h1>
-      <p>Enterprise-grade cybersecurity solutions that secure your infrastructure, detect threats in real-time, and ensure compliance.</p>
-      <div class="hero-cta">
-        <a href="#contact" class="btn btn-primary">Request Assessment</a>
-        <a href="services.html" class="btn btn-secondary">Learn More</a>
-      </div>
+      <div class="hero-badge" id="services-badge">⚡ CAPABILITIES</div>
+      <h1 id="services-headline">Security Solutions</h1>
+      <p id="services-description">Comprehensive protection across your entire digital infrastructure</p>
     </div>
   </section>
 
   <!-- Stats Section -->
   <section style="background: var(--color-bg-elevated); padding: 3rem 0;">
     <div class="container">
-      <div class="stats-grid" id="stats-grid">
+      <div class="stats-grid" id="services-stats-grid">
+        <!-- Populated by JavaScript -->
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <div class="section-label">OUR SERVICES</div>
+        <h2>What We Offer</h2>
+        <p>Enterprise-grade security solutions tailored to your needs</p>
+      </div>
+      <div class="grid grid-3" id="services-grid">
         <!-- Populated by JavaScript -->
       </div>
     </div>
@@ -62,39 +72,7 @@
       <p style="color: var(--color-text-muted); font-size: 1.2rem; margin-bottom: 2rem;">
         Get a free security assessment and see how CLASP can protect your organization
       </p>
-      <a href="#contact" class="btn btn-primary">Contact Security Team</a>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-label">CONTACT</div>
-        <h2>Ready to secure your infrastructure?</h2>
-        <p>Get a free security assessment and see how CLASP can protect your organization from emerging threats.</p>
-      </div>
-      <form class="contact-form" id="contact-form">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" required>
-        </div>
-        <div class="form-group">
-          <label for="email">Work Email</label>
-          <input type="email" id="email" name="email" required>
-        </div>
-        <div class="form-group">
-          <label for="company">Company</label>
-          <input type="text" id="company" name="company" required>
-        </div>
-        <div class="form-group">
-          <label for="message">Security Concerns</label>
-          <textarea id="message" name="message" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%;">
-          Submit Request
-        </button>
-      </form>
+      <a href="index.html#contact" class="btn btn-primary">Contact Security Team</a>
     </div>
   </section>
 
@@ -116,5 +94,6 @@
   </footer>
 
   <script src="/js/main.js"></script>
+  <script src="/js/services.js"></script>
 </body>
 </html>

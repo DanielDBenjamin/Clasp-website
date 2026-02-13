@@ -1,20 +1,43 @@
 {
-  "title": "Our Services",
-  "items": [
+  "sectionLabel": "CAPABILITIES",
+  "heading": "Security Solutions",
+  "description": "Comprehensive protection across your entire digital infrastructure",
+  "services": [
     {
-      "title": "Security Consulting",
-      "description": "Expert cybersecurity guidance to help you identify vulnerabilities and strengthen your defenses.",
-      "icon": "🔒"
-    },
-    {
-      "title": "Threat Protection",
-      "description": "Advanced threat detection and prevention solutions to keep your systems secure.",
+      "title": "Threat Detection",
+      "description": "Real-time monitoring and AI-powered threat detection to identify and neutralize attacks before they impact your business",
       "icon": "🛡️"
     },
     {
-      "title": "24/7 Monitoring",
-      "description": "Round-the-clock security monitoring and incident response to protect your business.",
+      "title": "Penetration Testing",
+      "description": "Comprehensive security assessments that expose vulnerabilities and provide actionable remediation strategies",
+      "icon": "🔐"
+    },
+    {
+      "title": "Security Operations",
+      "description": "24/7 SOC services with expert analysts monitoring your infrastructure for suspicious activity",
       "icon": "👁️"
+    },
+    {
+      "title": "Compliance & Governance",
+      "description": "Navigate complex regulatory requirements with confidence through our compliance frameworks and auditing",
+      "icon": "📋"
+    },
+    {
+      "title": "Incident Response",
+      "description": "Rapid response team ready to contain breaches, investigate root causes, and restore operations",
+      "icon": "🚨"
+    },
+    {
+      "title": "Security Training",
+      "description": "Empower your team with security awareness training and simulated phishing campaigns",
+      "icon": "🎓"
     }
+  ],
+  "stats": [
+    { "number": "99.9%", "label": "Threat Detection Rate" },
+    { "number": "24/7", "label": "Security Monitoring" },
+    { "number": "<15min", "label": "Average Response Time" },
+    { "number": "500+", "label": "Enterprises Protected" }
   ]
 }
