@@ -21,9 +21,9 @@ collections:
           - { label: "Headline", name: "headline", widget: "string" }
           - { label: "Subheadline", name: "subheadline", widget: "text" }
           - { label: "CTA Button Text", name: "ctaText", widget: "string" }
-          - { label: "CTA Button Link", name: "ctaLink", widget: "string" }
+          - { label: "CTA Button Link", name: "ctaLink", widget: "hidden", default: "#contact" }
           - { label: "Secondary CTA Text", name: "secondaryCtaText", widget: "string" }
-          - { label: "Secondary CTA Link", name: "secondaryCtaLink", widget: "string" }
+          - { label: "Secondary CTA Link", name: "secondaryCtaLink", widget: "hidden", default: "services.html" }
 
       # Services
       - name: "services"
