@@ -1,20 +1,20 @@
 {
-  "title": "What We Do",
+  "title": "Our Services",
   "items": [
     {
-      "title": "Consulting",
-      "description": "Expert guidance to help you make informed decisions and achieve your business goals.",
-      "icon": "💼"
+      "title": "Security Consulting",
+      "description": "Expert cybersecurity guidance to help you identify vulnerabilities and strengthen your defenses.",
+      "icon": "🔒"
     },
     {
-      "title": "Development",
-      "description": "Custom solutions built with cutting-edge technology tailored to your specific needs.",
-      "icon": "🚀"
+      "title": "Threat Protection",
+      "description": "Advanced threat detection and prevention solutions to keep your systems secure.",
+      "icon": "🛡️"
     },
     {
-      "title": "Support",
-      "description": "Ongoing assistance and maintenance to ensure your systems run smoothly.",
-      "icon": "🛠️"
+      "title": "24/7 Monitoring",
+      "description": "Round-the-clock security monitoring and incident response to protect your business.",
+      "icon": "👁️"
     }
   ]
 }

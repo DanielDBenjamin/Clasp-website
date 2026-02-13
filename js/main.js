@@ -63,7 +63,11 @@
         if (content.about) {
             setTextContent('[data-content="about.title"]', content.about.title);
             setTextContent('.about-description', content.about.description);
-            setTextContent('.nav-brand', content.about.company_name);
+            // Update nav brand text (the span inside nav-brand)
+            const navBrandSpan = document.querySelector('.nav-brand span');
+            if (navBrandSpan) {
+                navBrandSpan.textContent = content.about.company_name;
+            }
             setTextContent('[data-content="about.company_name"]', content.about.company_name);
             
             // Set about image if provided

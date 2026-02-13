@@ -1,9 +1,9 @@
 backend:
   name: github
-  repo: your-org/Clasp-website  # Update this with your GitHub username/org and repo name
+  repo: DanielDBenjamin/Clasp-website  # Update this with your GitHub username/org and repo name
   branch: main  # Branch to update (optional, defaults to master)
 
-media_folder: "static/images"  # Media files will be stored in the repo under static/images
+media_folder: "images"  # Media files will be stored in the repo under images
 public_folder: "/images"  # The src attribute for uploaded media will begin with /images
 
 collections:

@@ -6,13 +6,14 @@
 }
 
 :root {
-    --primary-color: #2563eb;
-    --secondary-color: #1e40af;
-    --text-color: #1f2937;
-    --text-light: #6b7280;
-    --bg-light: #f9fafb;
+    --primary-color: #34B84D;
+    --secondary-color: #2a9a3d;
+    --text-color: #FFFFFF;
+    --text-light: #A6A6A6;
+    --bg-dark: #1A1A1A;
+    --bg-light: #2A2A2A;
     --white: #ffffff;
-    --border-color: #e5e7eb;
+    --border-color: #333333;
     --spacing-unit: 1rem;
 }
 
@@ -20,7 +21,7 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--white);
+    background-color: var(--bg-dark);
 }
 
 .container {
@@ -31,11 +32,12 @@ body {
 
 /* Navigation */
 .navbar {
-    background-color: var(--white);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: var(--bg-dark);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
     position: sticky;
     top: 0;
     z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .navbar .container {
@@ -46,9 +48,18 @@ body {
 }
 
 .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--primary-color);
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.nav-brand img {
+    height: 40px;
+    width: auto;
 }
 
 .nav-menu {
@@ -59,7 +70,7 @@ body {
 
 .nav-menu a {
     text-decoration: none;
-    color: var(--text-color);
+    color: var(--text-light);
     font-weight: 500;
     transition: color 0.3s;
 }
@@ -70,22 +81,24 @@ body {
 
 /* Hero Section */
 .hero {
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    background-color: var(--bg-dark);
     color: var(--white);
-    padding: 6rem 0;
+    padding: 8rem 0 6rem;
     text-align: center;
+    position: relative;
 }
 
 .hero-headline {
     font-size: 3rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    color: var(--text-color);
 }
 
 .hero-subline {
     font-size: 1.25rem;
     margin-bottom: 2rem;
-    opacity: 0.95;
+    color: var(--text-light);
 }
 
 .btn {
@@ -94,17 +107,18 @@ body {
     border-radius: 0.5rem;
     text-decoration: none;
     font-weight: 600;
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
 }
 
 .btn-primary {
-    background-color: var(--white);
-    color: var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--white);
 }
 
 .btn-primary:hover {
+    background-color: var(--secondary-color);
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 12px rgba(52, 184, 77, 0.4);
 }
 
 /* Section Styles */
@@ -151,16 +165,17 @@ section {
 }
 
 .service-card {
-    background-color: var(--white);
+    background-color: var(--bg-light);
     padding: 2rem;
     border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s, box-shadow 0.3s;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
 }
 
 .service-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 16px rgba(52, 184, 77, 0.2);
 }
 
 .service-icon {
@@ -179,6 +194,10 @@ section {
     line-height: 1.6;
 }
 
+.service-icon {
+    color: var(--primary-color);
+}
+
 /* Contact Section */
 .contact {
     background-color: var(--bg-light);
@@ -195,6 +214,10 @@ section {
     font-size: 1.125rem;
 }
 
+.contact-item {
+    color: var(--text-light);
+}
+
 .contact-item strong {
     color: var(--text-color);
 }
@@ -209,24 +232,27 @@ section {
 .social-link {
     display: inline-block;
     padding: 0.5rem 1rem;
-    background-color: var(--white);
-    color: var(--primary-color);
+    background-color: var(--bg-light);
+    color: var(--text-light);
     text-decoration: none;
     border-radius: 0.5rem;
-    transition: background-color 0.3s, color 0.3s;
+    border: 1px solid var(--border-color);
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .social-link:hover {
     background-color: var(--primary-color);
     color: var(--white);
+    border-color: var(--primary-color);
 }
 
 /* Footer */
 .footer {
-    background-color: var(--text-color);
-    color: var(--white);
+    background-color: var(--bg-dark);
+    color: var(--text-light);
     text-align: center;
     padding: 2rem 0;
+    border-top: 1px solid var(--border-color);
 }
 
 /* Responsive Design */

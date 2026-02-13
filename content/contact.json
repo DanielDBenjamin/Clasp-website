@@ -1,20 +1,20 @@
 {
   "title": "Get In Touch",
-  "email": "info@clasp.com",
+  "email": "info@clasp-cybersecurity.com",
   "phone": "+1 (555) 123-4567",
   "address": "123 Business St, City, State 12345",
   "social": [
     {
       "name": "LinkedIn",
-      "url": "https://linkedin.com/company/clasp"
+      "url": "https://linkedin.com/company/clasp-cybersecurity"
     },
     {
       "name": "Twitter",
-      "url": "https://twitter.com/clasp"
+      "url": "https://twitter.com/claspcyber"
     },
     {
-      "name": "Facebook",
-      "url": "https://facebook.com/clasp"
+      "name": "GitHub",
+      "url": "https://github.com/clasp-cybersecurity"
     }
   ]
 }
