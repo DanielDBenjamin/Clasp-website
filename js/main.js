@@ -150,11 +150,17 @@ async function loadContent() {
   document.addEventListener('DOMContentLoaded', async () => {
     const content = await loadContent();
     
+    // Only populate home-page-specific sections when on the home page
+    const isHomePage = window.location.pathname === '/' ||
+                       window.location.pathname.endsWith('index.html');
+
     if (content) {
-      populateHero(content.hero);
-      populateStats(content.services.stats);
-      populateServices(content.services);
-      populateContact(content.contact);
+      if (isHomePage) {
+        populateHero(content.hero);
+        populateStats(content.services.stats);
+        populateServices(content.services);
+        populateContact(content.contact);
+      }
     }
     
     initSmoothScroll();
