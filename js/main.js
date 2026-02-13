@@ -104,30 +104,6 @@ function initScrollAnimations() {
   }, 100);
 }
 
-// Highlight the active page in the nav
-function initActiveNav() {
-  var path = window.location.pathname;
-
-  // Normalize the current path:
-  // "/services.html" → "services", "/services" → "services", "/services/" → "services", "/" → "index"
-  var page = path.replace(/\/$/, '').replace(/\.html$/, '');
-  page = page.substring(page.lastIndexOf('/') + 1) || 'index';
-
-  document.querySelectorAll('nav ul a').forEach(function (link) {
-    var href = link.getAttribute('href');
-
-    // Skip links with hash fragments like "index.html#contact"
-    if (href.indexOf('#') !== -1) return;
-
-    // Normalize href the same way: "services.html" → "services", "index.html" → "index"
-    var hrefPage = href.replace(/\.html$/, '');
-
-    if (hrefPage === page) {
-      link.classList.add('nav-active');
-    }
-  });
-}
-
 // Initialize everything on DOM ready
 document.addEventListener('DOMContentLoaded', async function () {
   // Only load and populate CMS content on the home page
@@ -142,7 +118,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     populateContact(contact);
   }
 
-  initActiveNav();
   initSmoothScroll();
   initContactForm();
   initScrollAnimations();
