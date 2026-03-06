@@ -1,0 +1,432 @@
+/* ============================================
+   CLASP — Premium Navy Brand Theme
+   ============================================ */
+
+:root {
+  /* The Palette: Deep Navy & Cyber Green to match the logo */
+  --bg-base: #0B1120;       /* Deep Midnight Blue */
+  --bg-surface: #172554;    /* Slightly lighter Navy for cards */
+  
+  --text-main: #FFFFFF;     /* Pure white for headings */
+  --text-muted: #94A3B8;    /* Soft slate for reading text */
+  
+  --accent: #16A34A;        /* Cyber Green matching the logo shield */
+  --accent-light: rgba(22, 163, 74, 0.1); 
+  
+  --border-subtle: #1E3A8A; /* Dark blue borders */
+  --border-focus: #3B82F6;
+
+  --font-main: 'Inter', sans-serif;
+  --radius-sm: 4px;         
+  --radius-md: 8px;
+  
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Make sure the navbar matches the dark theme */
+.navbar {
+  background: rgba(11, 17, 32, 0.95); /* Midnight blue with transparency */
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+/* Remove the old logo filter so your natural white text shows up! */
+.nav-logo {
+  height: 40px;
+  width: auto;
+  display: block;
+  transition: transform 0.3s var(--ease);
+  /* filter: brightness(0.1) ... -> REMOVED! */
+}
+
+a { text-decoration: none; color: inherit; }
+ul { list-style: none; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.text-accent { color: var(--accent); }
+
+/* --- Typography --- */
+h1, h2, h3 { font-weight: 700; line-height: 1.2; letter-spacing: -0.02em; }
+p { color: var(--text-muted); }
+
+/* --- Buttons --- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 28px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s var(--ease);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #FFFFFF;
+  border: 1px solid var(--accent);
+}
+
+.btn-primary:hover {
+  background-color: #152C69; /* Darker navy on hover */
+  border-color: #152C69;
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--text-main);
+  border: 1px solid var(--border-focus);
+}
+
+.btn-outline:hover {
+  background-color: var(--bg-surface);
+  border-color: var(--text-main);
+}
+
+.btn-sm { padding: 10px 20px; font-size: 0.85rem; }
+
+/* --- Navigation --- */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.95); /* Solid white, slight transparency */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border-subtle);
+  z-index: 100;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.brand {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+}
+
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--accent); }
+
+/* --- Hero Section --- */
+.hero {
+  position: relative;
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  padding-top: 80px;
+  /* Updated to a dark navy gradient */
+  background: radial-gradient(circle at top center, #172554 0%, var(--bg-base) 100%);
+  overflow: hidden;
+}
+
+/* A very subtle architectural/grid pattern to imply structure and compliance */
+.hero-pattern {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(var(--border-subtle) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+.hero-container {
+  max-width: 850px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: var(--accent-light);
+  border: 1px solid #BFDBFE;
+  border-radius: 60px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent);
+  margin-bottom: 24px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.hero h1 {
+  font-size: clamp(3rem, 6vw, 5rem);
+  margin-bottom: 24px;
+  color: var(--text-main);
+}
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  max-width: 650px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+.button-group {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* --- Features / Grid --- */
+.features { padding: 100px 0; }
+
+.section-header {
+  text-align: center;
+  margin-bottom: 64px;
+}
+
+.section-header h2 { font-size: 2.5rem; margin-bottom: 12px; }
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+/* Trust cards look like formal documents or solid blocks */
+.trust-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  padding: 48px 40px;
+  border-radius: var(--radius-sm);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  position: relative;
+  transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+}
+
+.trust-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* A clean accent line at the top of the card */
+.card-line {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: var(--accent);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.trust-card h3 { font-size: 1.25rem; margin-bottom: 16px; color: var(--text-main); }
+.trust-card p { font-size: 1rem; line-height: 1.6; }
+
+/* --- Footer --- */
+.footer {
+  border-top: 1px solid var(--border-subtle);
+  background: #FFFFFF;
+  padding: 40px 0;
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+/* ============================================
+   TRUST BANNER & CONTACT SECTION
+   ============================================ */
+
+/* --- Trusted By Banner --- */
+.trusted-by {
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 40px 0;
+  background: var(--bg-surface);
+  text-align: center;
+}
+
+.trusted-label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.logo-strip {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 48px;
+  flex-wrap: wrap;
+  opacity: 0.5; 
+  /* Removed the grayscale filter, added a brightness bump to make text white */
+  filter: brightness(0) invert(1); 
+  transition: opacity 0.3s ease;
+}
+
+.logo-strip:hover {
+  opacity: 0.7;
+}
+
+.trust-logo {
+  font-family: var(--font-main);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+/* --- Contact Section --- */
+.contact-section {
+  padding: 100px 0;
+  background: var(--bg-base);
+}
+
+.contact-container {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.contact-info h2 {
+  font-size: 2.5rem;
+  margin-bottom: 16px;
+}
+
+.contact-info p {
+  font-size: 1.1rem;
+  margin-bottom: 48px;
+  max-width: 400px;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.detail-item strong {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.detail-item span {
+  color: var(--text-main);
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+/* --- Enterprise Form --- */
+.contact-form-wrapper {
+  background: var(--bg-surface);
+  padding: 48px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+.enterprise-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: var(--text-main);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--bg-base);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-main);
+  font-size: 0.95rem;
+  color: var(--text-main);
+  transition: all 0.2s var(--ease);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--bg-surface);
+  box-shadow: 0 0 0 4px var(--accent-light);
+}
+
+.w-100 {
+  width: 100%;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 900px) {
+  .contact-container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+  .enterprise-form .form-row {
+    grid-template-columns: 1fr;
+  }
+  .contact-form-wrapper {
+    padding: 32px;
+  }
+}
+
+/* ============================================
+   STATS STRIP (SERVICES PAGE)
+   ============================================ */
+.stats-strip {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 40px 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+  text-align: center;
+}
+
+.stat-number {
+  display: block;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  font-weight: 600;
+}

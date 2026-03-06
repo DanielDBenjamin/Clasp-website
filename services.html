@@ -3,103 +3,129 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CLASP Compliance Services - CMMC, NIST, and Joint Standards consulting">
+  <meta name="description" content="CLASP Services - CMMC, NIST, and Joint Standards Consulting">
   <title>Services | CLASP Cyber Compliance</title>
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Orbitron:wght@400;700;900&display=swap">
-  <link rel="preload" as="image" href="/images/clasp-background-1-.jpg">
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="prefetch" href="/index.html">
-  <link rel="prefetch" href="/about.html">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="main.css">
 </head>
 <body>
-  <!-- Scanline effect -->
-  <div class="scanline"></div>
 
-  <!-- Navigation -->
-  <nav>
-    <div class="container">
-      <a href="/" class="logo-container">
-        <img src="/images/logo.png" alt="CLASP Logo" class="logo-image">
-        <div class="logo-text">
-          <div class="logo-title">CLASP</div>
-          <div class="logo-subtitle">CYBER COMPLIANCE</div>
-        </div>
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <img src="images/logo.png" alt="CLASP Cyber" class="nav-logo">
       </a>
-      <ul>
-        <li><a href="index.html">HOME</a></li>
-        <li><a href="services.html" class="nav-active">SERVICES</a></li>
-        <li><a href="about.html">ABOUT</a></li>
-        <li><a href="index.html#contact">CONTACT</a></li>
+      <ul class="nav-links">
+        <li><a href="services.html" style="color: var(--accent);">Services</a></li>
+        <li><a href="index.html#frameworks">Frameworks</a></li>
+        <li><a href="about.html">Our Firm</a></li>
       </ul>
+      <a href="index.html#contact" class="btn btn-primary btn-sm">Schedule Consultation</a>
     </div>
   </nav>
 
-  <!-- Services Hero -->
-  <section class="hero" style="min-height: 60vh;">
-    <div class="hero-content">
-      <div class="hero-badge" id="services-badge">⚡ CAPABILITIES</div>
-      <h1 id="services-headline">Security Solutions</h1>
-      <p id="services-description">Comprehensive protection across your entire digital infrastructure</p>
-    </div>
-  </section>
-
-  <!-- Stats Section -->
-  <section style="background: var(--color-bg-elevated); padding: 3rem 0;">
-    <div class="container">
-      <div class="stats-grid" id="services-stats-grid">
-        <!-- Populated by JavaScript -->
-      </div>
-    </div>
-  </section>
-
-  <!-- Services Grid -->
-  <section>
-    <div class="container">
-      <div class="section-header">
-        <div class="section-label">OUR SERVICES</div>
-        <h2>What We Offer</h2>
-        <p>Compliance solutions tailored to your organisation's requirements</p>
-      </div>
-      <div class="grid grid-3" id="services-grid">
-        <!-- Populated by JavaScript -->
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA Section -->
-  <section style="background: var(--color-bg-elevated); text-align: center; padding: 5rem 0;">
-    <div class="container">
-      <div class="section-label">GET STARTED</div>
-      <h2 style="font-family: var(--font-display); font-size: 3rem; margin: 1rem 0; color: var(--color-text-bright); text-transform: uppercase; letter-spacing: 2px;">
-        Ready to Achieve Compliance?
-      </h2>
-      <p style="color: var(--color-text-muted); font-size: 1.2rem; margin-bottom: 2rem;">
-        Get a free compliance consultation and see how CLASP can guide your organisation
-      </p>
-      <a href="index.html#contact" class="btn btn-primary">Contact Our Team</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <p>© 2024 CLASP Cyber Compliance. All rights reserved.</p>
-        <p style="color: var(--color-primary); font-family: var(--font-mono); margin-top: 0.5rem;">
-          CYBER COMPLIANCE. SIMPLIFIED.
+  <main>
+    <section class="hero" style="min-height: 50vh; padding-top: 120px;">
+      <div class="container hero-container" style="text-align: left; max-width: 900px; margin: 0;">
+        <div class="badge">Capabilities</div>
+        <h1 style="font-size: clamp(2.5rem, 5vw, 4rem);">Compliance Services.</h1>
+        <p class="hero-subtitle" style="margin-left: 0;">
+          End-to-end support for achieving and maintaining cyber compliance with federal and joint standards.
         </p>
-        <div class="social-links">
-          <a href="https://twitter.com/claspcyber" target="_blank">𝕏</a>
-          <a href="https://linkedin.com/company/claspcyber" target="_blank">in</a>
-          <a href="https://github.com/claspcyber" target="_blank">gh</a>
+      </div>
+    </section>
+
+    <section class="stats-strip">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label">Assessment Pass Rate</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">200+</span>
+            <span class="stat-label">Organisations Certified</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">50+</span>
+            <span class="stat-label">Joint Standards Engagements</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number">3</span>
+            <span class="stat-label">CMMC Levels Supported</span>
+          </div>
         </div>
+      </div>
+    </section>
+
+    <section class="features" style="padding-top: 80px;">
+      <div class="container">
+        <div class="section-header" style="text-align: left; margin-bottom: 40px;">
+          <h2>Core Capabilities</h2>
+          <p>Comprehensive protection across your entire digital infrastructure.</p>
+        </div>
+        
+        <div class="grid-3">
+          <div class="trust-card">
+            <div class="card-line"></div>
+            <h3>CMMC Readiness</h3>
+            <p>Prepare your organisation for Cybersecurity Maturity Model Certification with comprehensive gap analysis, remediation planning, and assessment support across all CMMC levels.</p>
+          </div>
+          
+          <div class="trust-card">
+            <div class="card-line"></div>
+            <h3>NIST Framework Alignment</h3>
+            <p>Map your security posture to NIST 800-171 and NIST CSF controls, with actionable roadmaps to close gaps and demonstrate compliance to assessors.</p>
+          </div>
+          
+          <div class="trust-card">
+            <div class="card-line"></div>
+            <h3>Joint Standards Consulting</h3>
+            <p>Navigate the complexities of Joint Standards requirements with expert guidance tailored to your organisation's operational environment and contract obligations.</p>
+          </div>
+
+          <div class="trust-card">
+            <div class="card-line"></div>
+            <h3>Compliance Gap Analysis</h3>
+            <p>Thorough assessment of your current security controls against required standards, identifying gaps with prioritised remediation strategies and timelines.</p>
+          </div>
+
+          <div class="trust-card">
+            <div class="card-line"></div>
+            <h3>Policy & Documentation</h3>
+            <p>Development and review of System Security Plans (SSP), Plan of Action & Milestones (POA&M), and all supporting compliance documentation.</p>
+          </div>
+
+          <div class="trust-card">
+            <div class="card-line"></div>
+            <h3>Compliance Training</h3>
+            <p>Equip your team with the knowledge to maintain compliance posture day-to-day, covering CUI handling, access controls, and audit readiness.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <section class="cta-banner">
+    <div class="cta-overlay"></div>
+    <div class="container cta-container">
+      <h2>Ready to fortify your infrastructure?</h2>
+      <p>Engage our advisory team for a comprehensive compliance assessment.</p>
+      <a href="index.html#contact" class="btn btn-accent cta-btn">Schedule Assessment</a>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <p>&copy; 2026 CLASP Cyber Advisory. All rights reserved.</p>
       </div>
     </div>
   </footer>
 
-  <script src="/js/main.js"></script>
-  <script src="/js/services.js"></script>
 </body>
 </html>
