@@ -683,32 +683,28 @@ p { color: var(--text-muted); }
   box-shadow: 0 0 0 1px var(--accent);
 }
 
-/* --- Number Line / Risk Gauge --- */
 .score-line-wrapper {
   max-width: 500px;
   margin: 0 auto 48px;
   position: relative;
-  padding-top: 30px; /* Space for the benchmark label */
+  padding-top: 40px; /* Space reserved only for the moving tooltip */
 }
-
 .score-line {
   position: relative;
   height: 12px;
-  /* Hard stops for the exact rating bands */
   background: linear-gradient(to right, 
-    #EF4444 0%, #EF4444 39.9%,   /* 0-39: Red */
-    #F59E0B 40%, #F59E0B 64.9%,  /* 40-64: Amber */
-    #3B82F6 65%, #3B82F6 84.9%,  /* 65-84: Blue */
-    #10B981 85%, #10B981 100%    /* 85-100: Green */
+    #EF4444 0%, #EF4444 39.9%,   
+    #F59E0B 40%, #F59E0B 64.9%,  
+    #3B82F6 65%, #3B82F6 84.9%,  
+    #10B981 85%, #10B981 100%    
   );
   border-radius: 6px;
-  margin-bottom: 12px;
+  margin-bottom: 48px; /* Creates a nice gap below the line for the benchmark label */
 }
 
-/* The Industry Average Label & Tick */
 .benchmark-label {
   position: absolute;
-  top: 0;
+  top: 30px; /* Pushes the text safely below the tick mark */
   transform: translateX(-50%);
   font-size: 0.75rem;
   font-weight: 700;
@@ -720,8 +716,8 @@ p { color: var(--text-muted); }
 
 .benchmark-tick {
   position: absolute;
-  top: -4px;
-  bottom: -4px;
+  top: 0;
+  height: 24px; /* Drops 12px below the line */
   width: 2px;
   background-color: var(--text-muted);
   transform: translateX(-50%);

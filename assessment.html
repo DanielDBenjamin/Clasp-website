@@ -26,7 +26,7 @@
         <li><a href="index.html#standards">FSCA Standards</a></li>
         <li><a href="about.html">VISO Advisory</a></li>
       </ul>
-      <a href="index.html#contact" class="btn btn-outline btn-sm">Contact Us</a>
+      <a href="index.html#contact" class="btn btn-primary btn-sm">Schedule Assessment</a>
     </div>
   </nav>
 
@@ -58,26 +58,34 @@
         </div>
 
         <div id="result-container" class="hidden text-center">
+          
+          <h2 style="font-size: 2rem; margin-bottom: 8px; color: var(--text-main);">Your Readiness Score</h2>
+          <p style="color: var(--text-muted); margin-bottom: 56px;">Benchmarked against FSCA Joint Standards 1 & 2 requirements.</p>
+
           <div class="score-line-wrapper">
-            <div class="benchmark-label" style="left: 45%;">Industry Avg (45)</div>
             <div class="score-line">
               <div class="benchmark-tick" style="left: 45%;"></div>
+              <div class="benchmark-label" style="left: 45%;">Industry Avg (45)</div>
+              
               <div class="user-score-marker" id="user-score-marker" style="left: 0%;">
                 <div class="user-score-tooltip" id="user-score-tooltip">0</div>
               </div>
             </div>
+            
             <div class="score-labels">
               <span>0 (At Risk)</span>
               <span>100 (Compliant)</span>
             </div>
           </div>
 
-          <h2 id="result-title">Calculating...</h2>
+          <h3 id="result-title" style="font-size: 1.5rem; margin-bottom: 16px;">Calculating...</h3>
           <p id="result-desc" class="result-text"></p>
+          
           <div class="result-actions">
-            <a href="../index.html#contact" class="btn btn-primary">Request Full IT Audit</a>
+            <a href="index.html#contact" class="btn btn-primary">Request Full IT Audit</a>
             <button onclick="location.reload()" class="btn btn-outline">Retake Assessment</button>
           </div>
+          
         </div>
 
       </div>
