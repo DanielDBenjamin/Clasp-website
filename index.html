@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="CLASP - Enterprise Cyber Compliance & Risk Management">
-  <title>CLASP | Cyber Compliance</title>
+  <meta name="description" content="CLASP - Cybersecurity and FSCA Joint Standards Compliance for FSPs">
+  <title>CLASP | FSCA Cyber Compliance</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="main.css">
 </head>
@@ -16,13 +16,16 @@
 
   <nav class="navbar">
     <div class="container nav-container">
-      <a href="/" class="brand">CLASP.</a>
+      <a href="/" class="brand">
+        <img src="images/whitelogo.png" alt="CLASP Cyber" class="nav-logo">
+      </a>
       <ul class="nav-links">
-        <li><a href="services.html">Services</a></li>
-        <li><a href="#frameworks">Frameworks</a></li>
-        <li><a href="#about">Our Firm</a></li>
+        <li><a href="assessment.html">Free Assessment</a></li>
+        <li><a href="services.html">Solutions</a></li>
+        <li><a href="index.html#standards">FSCA Standards</a></li>
+        <li><a href="about.html">VISO Advisory</a></li>
       </ul>
-      <a href="#contact" class="btn btn-primary btn-sm">Schedule Consultation</a>
+      <a href="#contact" class="btn btn-primary btn-sm">Schedule Assessment</a>
     </div>
   </nav>
 
@@ -30,36 +33,123 @@
     <section class="hero">
       <div class="hero-pattern"></div>
       <div class="container hero-container">
-        <div class="badge">Risk Management & Advisory</div>
-        <h1>Definitive Cyber <br><span class="text-accent">Compliance.</span></h1>
+        <div class="badge">Financial Sector Compliance</div>
+        <h1>FSCA Cyber Compliance. <br><span class="text-accent">Simplified.</span></h1>
         <p class="hero-subtitle">
-          Guiding enterprise and federal contractors through the complexities of CMMC, NIST, and Joint Standards with absolute precision.
+          A turnkey cybersecurity offering designed specifically to help FSPs meet the stringent requirements of FSCA Joint Standards 1 of 2023 and 2 of 2024.
         </p>
         <div class="button-group">
-          <a href="#contact" class="btn btn-primary">Engage Our Team</a>
-          <a href="#frameworks" class="btn btn-outline">View Capabilities</a>
+          <a href="#contact" class="btn btn-primary">Book IT Risk Assessment</a>
+          <a href="#solutions" class="btn btn-outline">Explore Solutions</a>
         </div>
       </div>
     </section>
+
+    <section class="trusted-by">
+      <div class="container">
+        <p class="trusted-label">Securing infrastructure for leading Financial Services Providers</p>
+        <div class="logo-strip">
+          <span class="trust-logo">FinTech Corp</span>
+          <span class="trust-logo">Wealth Advisory</span>
+          <span class="trust-logo">SecureBank</span>
+          <span class="trust-logo">Capital Partners</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="solutions" class="features">
+      <div class="container">
+        <div class="section-header">
+          <h2>Our Core Offering</h2>
+          <p>Collaborating with you and your compliance officers to close your IT security gaps.</p>
+        </div>
+        
+        <div class="grid-3">
+          <div class="trust-card">
+            <div class="card-line"></div>
+            <h3>IT Security Risk Assessments</h3>
+            <p>We begin every engagement by identifying the gaps in your IT security stack and mapping them directly to FSCA compliance requirements.</p>
+          </div>
+          
+          <div class="trust-card">
+            <div class="card-line"></div>
+            <h3>Technology Solutions</h3>
+            <p>Implementation and configuration of robust solutions including Microsoft 365 Business Premium, Cove Data Protection, and RocketCyber 24/7 SOC.</p>
+          </div>
+          
+          <div class="trust-card">
+            <div class="card-line"></div>
+            <h3>Virtual ISO (VISO)</h3>
+            <p>A dedicated security professional managing your information security program, guiding tech investment, and reporting to senior management.</p>
+          </div>
+
+          <div class="trust-card">
+            <div class="card-line"></div>
+            <h3>Policy & Procedure Templates</h3>
+            <p>Access to our library of pre-configured frameworks, IT Risk Registers, and protection policies explicitly mapped to JS 1 and JS 2 requirements.</p>
+          </div>
+
+          <div class="trust-card">
+            <div class="card-line"></div>
+            <h3>Penetration Testing</h3>
+            <p>Automated and manual vulnerability scanning and penetration testing to identify weaknesses and simulate attacks on your network.</p>
+          </div>
+
+          <div class="trust-card">
+            <div class="card-line"></div>
+            <h3>Reporting & Alerting</h3>
+            <p>Continuous monitoring, M365 Security posture reporting, and "Report Cards" that show real-time progress to your internal compliance officers.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="standards" style="padding: 100px 0; background: var(--bg-surface); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div class="section-header">
+          <h2>The FSCA Mandates</h2>
+          <p>Our entire cybersecurity framework is mapped directly to the Authority's regulatory requirements.</p>
+        </div>
+        
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
+          <div class="trust-card">
+            <div class="card-line"></div>
+            <div style="font-family: monospace; color: var(--accent); font-weight: 600; margin-bottom: 8px;">JS 1 of 2023</div>
+            <h3>IT Governance & Risk Management</h3>
+            <p style="margin-bottom: 24px;">Sets out the principles for IT governance, risk management frameworks, third-party risk management, and the protection of sensitive information.</p>
+            <a href="#" target="_blank" class="btn btn-outline btn-sm">Read Official Standard</a>
+          </div>
+          
+          <div class="trust-card">
+            <div class="card-line"></div>
+            <div style="font-family: monospace; color: var(--accent); font-weight: 600; margin-bottom: 8px;">JS 2 of 2024</div>
+            <h3>Cybersecurity & Cyber Resilience</h3>
+            <p style="margin-bottom: 24px;">Mandates robust cybersecurity practices, access management, continuous threat monitoring, incident response planning, and rigorous vulnerability testing.</p>
+            <a href="#" target="_blank" class="btn btn-outline btn-sm">Read Official Standard</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="contact" class="contact-section">
       <div class="container contact-container">
         
         <div class="contact-info">
           <h2>Secure Your Operations.</h2>
-          <p>Get in touch with our advisory team to discuss your compliance requirements and risk management strategy.</p>
+          <p>Get in touch with our advisory team to discuss your FSCA Joint Standards compliance requirements.</p>
           
           <div class="contact-details">
             <div class="detail-item">
               <strong>Email</strong>
-              <span>security@claspcyber.co.za</span>
+              <span>info@clasp.co.za</span>
             </div>
             <div class="detail-item">
               <strong>Phone</strong>
-              <span>+1 (555) SEC-CURE</span>
+              <span>+27 87 0878749</span>
             </div>
             <div class="detail-item">
               <strong>Headquarters</strong>
-              <span>2500 Security Boulevard, Suite 400<br>San Francisco, CA 94105</span>
+              <span>102 Howard Terraces, Rose Innes Way<br>Pinelands, South Africa</span>
             </div>
           </div>
         </div>
@@ -72,7 +162,7 @@
                 <input type="text" id="name" required>
               </div>
               <div class="form-group">
-                <label for="company">Company</label>
+                <label for="company">FSP Name</label>
                 <input type="text" id="company" required>
               </div>
             </div>
@@ -81,62 +171,33 @@
               <input type="email" id="email" required>
             </div>
             <div class="form-group">
-              <label for="message">Compliance Needs</label>
-              <textarea id="message" rows="4" required></textarea>
+              <label for="message">Current Compliance Status</label>
+              <textarea id="message" rows="4" placeholder="Briefly describe your current progress with JS 1 and JS 2..." required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Request Consultation</button>
+            <button type="submit" class="btn btn-primary w-100">Request IT Assessment</button>
           </form>
         </div>
 
       </div>
     </section>
-
-    <section id="frameworks" class="features">
-      <div class="container">
-        <div class="section-header">
-          <h2>Core Frameworks</h2>
-          <p>Strategic alignment with federal and international security mandates.</p>
-        </div>
-        
-        <div class="grid-3">
-          <div class="trust-card">
-            <div class="card-line"></div>
-            <h3>CMMC Readiness</h3>
-            <p>Comprehensive gap analysis and remediation mapping for all Cybersecurity Maturity Model Certification levels.</p>
-          </div>
-          <div class="trust-card">
-            <div class="card-line"></div>
-            <h3>NIST Alignment</h3>
-            <p>Rigorous policy development and continuous monitoring mapped directly to NIST 800-171 controls.</p>
-          </div>
-          <div class="trust-card">
-            <div class="card-line"></div>
-            <h3>Joint Standards</h3>
-            <p>Unified security architecture designed specifically for the rigorous demands of defense contractors.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="trusted-by">
-      <div class="container">
-        <p class="trusted-label">Securing infrastructure for leading financial services and defense contractors</p>
-        <div class="logo-strip">
-          <span class="trust-logo">FinTech Corp</span>
-          <span class="trust-logo">Global Defense</span>
-          <span class="trust-logo">SecureBank</span>
-          <span class="trust-logo">AeroSpace Sys</span>
-        </div>
-      </div>
-    </section>
   </main>
+
+  <section class="cta-banner">
+    <div class="cta-overlay"></div>
+    <div class="container cta-container">
+      <h2>Not an IT Managed Service Provider.</h2>
+      <p>We focus exclusively on cyber governance, risk, and compliance. We collaborate seamlessly with your existing IT department or MSP.</p>
+      <a href="#contact" class="btn btn-accent cta-btn">Partner With Us</a>
+    </div>
+  </section>
 
   <footer class="footer">
     <div class="container">
       <div class="footer-bottom">
-        <p>&copy; 2026 CLASP Cyber Advisory. All rights reserved.</p>
+        <p>&copy; 2026 CLASP Cybersecurity. All rights reserved.</p>
       </div>
     </div>
   </footer>
-
+  <script src="main.js"></script>
 </body>
 </html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Free FSCA Cyber Compliance Readiness Assessment">
+  <title>Compliance Readiness Assessment | CLASP</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="../main.css">
+  <link rel="stylesheet" href="../assessment.css">
+</head>
+<body class="assessment-page">
+
+  <nav class="navbar">
+    <div class="container nav-container">
+      <a href="index.html" class="brand">
+        <img src="images/whitelogo.png" alt="CLASP Cyber" class="nav-logo">
+      </a>
+      <ul class="nav-links">
+        <li><a href="assessment.html" class="nav-active">Free Assessment</a></li>
+        <li><a href="services.html">Solutions</a></li>
+        <li><a href="index.html#standards">FSCA Standards</a></li>
+        <li><a href="about.html">VISO Advisory</a></li>
+      </ul>
+      <a href="index.html#contact" class="btn btn-outline btn-sm">Contact Us</a>
+    </div>
+  </nav>
+
+  <main class="assessment-main">
+    <div class="container assessment-container">
+      
+      <div class="quiz-header" id="quiz-header">
+        <div class="badge">FSCA Joint Standards 1 & 2</div>
+        <h1>Compliance Readiness Check.</h1>
+        <p>Answer 10 quick questions to evaluate your current IT governance and cybersecurity posture.</p>
+      </div>
+
+      <div class="quiz-card">
+        
+        <div class="progress-bar-container" id="progress-container">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+
+        <div id="question-counter" class="question-counter">
+          Question <span id="question-number">1</span> of <span id="question-total">10</span>
+        </div>
+
+        <div id="question-container">
+          </div>
+
+        <div id="quiz-navigation" class="quiz-navigation">
+          <button id="btn-prev" class="btn btn-outline" onclick="prevQuestion()">Back</button>
+          <button id="btn-next" class="btn btn-primary" onclick="nextQuestion()" disabled>Next</button>
+        </div>
+
+        <div id="result-container" class="hidden text-center">
+          <div class="score-line-wrapper">
+            <div class="benchmark-label" style="left: 45%;">Industry Avg (45)</div>
+            <div class="score-line">
+              <div class="benchmark-tick" style="left: 45%;"></div>
+              <div class="user-score-marker" id="user-score-marker" style="left: 0%;">
+                <div class="user-score-tooltip" id="user-score-tooltip">0</div>
+              </div>
+            </div>
+            <div class="score-labels">
+              <span>0 (At Risk)</span>
+              <span>100 (Compliant)</span>
+            </div>
+          </div>
+
+          <h2 id="result-title">Calculating...</h2>
+          <p id="result-desc" class="result-text"></p>
+          <div class="result-actions">
+            <a href="../index.html#contact" class="btn btn-primary">Request Full IT Audit</a>
+            <button onclick="location.reload()" class="btn btn-outline">Retake Assessment</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <script src="assessment.js"></script>
+</body>
+</html>
