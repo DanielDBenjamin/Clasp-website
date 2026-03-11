@@ -362,7 +362,7 @@ p { color: var(--text-muted); }
 .cta-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(15, 23, 42, 0.88); /* Deep slate tint */
+  background: rgba(15, 23, 42, 0.6); /* Deep slate tint */
   z-index: 1;
 }
 
