@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       try {
         // Send data to our secure Cloudflare Function
-        const response = await fetch('/api/contact', {
+        const response = await fetch('contact.php', {
           method: 'POST',
           body: formData
         });
