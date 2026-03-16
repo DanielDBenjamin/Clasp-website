@@ -113,22 +113,29 @@
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" required>
+                <input type="text" id="name" name="name" required>
               </div>
               <div class="form-group">
                 <label for="company">FSP Name</label>
-                <input type="text" id="company" required>
+                <input type="text" id="company" name="company" required>
               </div>
             </div>
+            
             <div class="form-group">
               <label for="email">Work Email</label>
-              <input type="email" id="email" required>
+              <input type="email" id="email" name="email" required>
             </div>
+            
             <div class="form-group">
               <label for="message">Current Compliance Status</label>
-              <textarea id="message" rows="4" placeholder="Briefly describe your current progress with JS 1 and JS 2..." required></textarea>
+              <textarea id="message" name="message" rows="4" placeholder="Briefly describe your current progress with JS 1 and JS 2..." required></textarea>
             </div>
-            <button type="submit" class="btn btn-primary w-100">Request IT Assessment</button>
+            
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAACrjuvZchyjGcZKr" style="margin-bottom: 20px;"></div>
+
+            <button type="submit" class="btn btn-primary w-100" id="submit-btn">Request IT Assessment</button>
+            
+            <div id="form-status" style="display: none; margin-top: 16px; padding: 12px; border-radius: 4px; font-weight: 500; text-align: center;"></div>
           </form>
         </div>
 

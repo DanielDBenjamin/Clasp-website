@@ -49,3 +49,63 @@ document.addEventListener('DOMContentLoaded', () => {
       standardsNavLink.classList.add('nav-active');
   }
 });
+
+// --- Secure Contact Form Submission ---
+document.addEventListener('DOMContentLoaded', () => {
+  const contactForm = document.getElementById('contact-form');
+  const formStatus = document.getElementById('form-status');
+  const submitBtn = document.getElementById('submit-btn');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Stop the page from reloading
+      
+      // Visual feedback that it's working
+      const originalBtnText = submitBtn.innerText;
+      submitBtn.innerText = 'Sending...';
+      submitBtn.style.opacity = '0.7';
+      submitBtn.disabled = true;
+      formStatus.style.display = 'none'; // Hide previous messages
+      
+      const formData = new FormData(contactForm);
+
+      try {
+        // Send data to our secure Cloudflare Function
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          // Success state
+          formStatus.style.display = 'block';
+          formStatus.style.backgroundColor = '#d1fae5'; // Light green
+          formStatus.style.color = '#065f46'; // Dark green text
+          formStatus.innerText = 'Message sent successfully! Our advisory team will be in touch shortly.';
+          
+          contactForm.reset();
+          
+          // Reset Turnstile widget so they can't submit twice with the same token
+          if (typeof turnstile !== 'undefined') {
+            turnstile.reset();
+          }
+        } else {
+          throw new Error('Failed to send message');
+        }
+      } catch (error) {
+        // Error state
+        formStatus.style.display = 'block';
+        formStatus.style.backgroundColor = '#fee2e2'; // Light red
+        formStatus.style.color = '#991b1b'; // Dark red text
+        formStatus.innerText = 'Oops! Something went wrong. Please try again or email info@clasp.co.za directly.';
+      } finally {
+        // Restore button state
+        submitBtn.innerText = originalBtnText;
+        submitBtn.style.opacity = '1';
+        submitBtn.disabled = false;
+      }
+    });
+  }
+});
