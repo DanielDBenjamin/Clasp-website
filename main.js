@@ -4,6 +4,29 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   
+  // 0. Mobile navigation toggle
+  const navToggle = document.querySelector('.nav-toggle');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('is-open');
+      navToggle.classList.toggle('is-open', isOpen);
+      navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Close menu when a link is clicked (mobile UX)
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (navLinks.classList.contains('is-open')) {
+          navLinks.classList.remove('is-open');
+          navToggle.classList.remove('is-open');
+          navToggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    });
+  }
+
   // 1. Smooth Scrolling for Anchor Links
   document.querySelectorAll('a[href^="#"], a[href*=".html#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -22,31 +45,39 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 2. The "Motion Sensor" (Intersection Observer) for the Standards Section
+  // 2. ScrollSpy for the Standards Section vs Home link
   const standardsSection = document.getElementById('standards');
   const standardsNavLink = document.querySelector('.nav-links a[href*="#standards"]');
+  const homeNavLink = document.querySelector('.nav-links a[href="index.html"]');
 
   if (standardsSection && standardsNavLink) {
-    // Set up the sensor: it triggers when 30% of the section is visible on screen
+    // Ensure Home is active by default on the homepage when JS is running
+    if (homeNavLink && !window.location.hash) {
+      homeNavLink.classList.add('nav-active');
+    }
+
+    // Sensor triggers when 30% of the standards section is visible
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          // Section is on screen: Turn link green
+          // In FSCA Standards: highlight that link and remove Home active
           standardsNavLink.classList.add('nav-active');
+          if (homeNavLink) homeNavLink.classList.remove('nav-active');
         } else {
-          // Section is off screen: Remove green
+          // Outside FSCA Standards: remove its active state and fall back to Home
           standardsNavLink.classList.remove('nav-active');
+          if (homeNavLink) homeNavLink.classList.add('nav-active');
         }
       });
     }, { threshold: 0.3 });
 
-    // Start watching the section
     observer.observe(standardsSection);
   }
   
-  // 3. Fallback for direct links (e.g., coming from the Services page directly to the Standards section)
+  // 3. Fallback for direct links (e.g., landing on index.html#standards)
   if (window.location.hash === '#standards' && standardsNavLink) {
-      standardsNavLink.classList.add('nav-active');
+    standardsNavLink.classList.add('nav-active');
+    if (homeNavLink) homeNavLink.classList.remove('nav-active');
   }
 });
 

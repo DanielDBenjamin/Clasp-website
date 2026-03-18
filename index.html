@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <link rel="stylesheet" href="main.css">
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> 
 </head>
 <body>
 
@@ -21,7 +21,13 @@
       <a href="/" class="brand">
         <img src="images/whitelogo.png" alt="CLASP Cyber" class="nav-logo">
       </a>
+        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       <ul class="nav-links">
+        <li><a href="index.html" class="nav-active">Home</a></li>
         <li><a href="assessment.html">Free Assessment</a></li>
         <li><a href="services.html">Solutions</a></li>
         <li><a href="index.html#standards">FSCA Standards</a></li>
@@ -47,18 +53,7 @@
       </div>
     </section>
 
-    <section class="trusted-by">
-      <div class="container">
-        <p class="trusted-label">Securing infrastructure for leading Financial Services Providers</p>
-        <div class="logo-strip">
-          <span class="trust-logo">FinTech Corp</span>
-          <span class="trust-logo">Wealth Advisory</span>
-          <span class="trust-logo">SecureBank</span>
-          <span class="trust-logo">Capital Partners</span>
-        </div>
-      </div>
-    </section>
-
+    
     <section id="standards" style="padding: 100px 0; background: var(--bg-surface); border-bottom: 1px solid var(--border-subtle);">
       <div class="container">
         <div class="section-header">

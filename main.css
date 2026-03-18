@@ -138,6 +138,43 @@ p { color: var(--text-muted); }
   color: var(--accent) !important;
 }
 
+/* Hamburger toggle (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface);
+  cursor: pointer;
+  padding: 0;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: var(--text-main);
+  transition: transform 0.2s var(--ease), opacity 0.2s var(--ease);
+}
+
+.nav-toggle.is-open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.nav-toggle.is-open span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
 /* --- Hero Section --- */
 .hero {
   position: relative;
@@ -387,7 +424,42 @@ p { color: var(--text-muted); }
   .contact-container { grid-template-columns: 1fr; gap: 48px; }
   .enterprise-form .form-row { grid-template-columns: 1fr; }
   .contact-form-wrapper { padding: 32px; }
-  .nav-links { display: none; /* Can add hamburger menu later */ }
+
+  .nav-container {
+    position: relative;
+    gap: 12px;
+  }
+
+  /* Show hamburger, hide inline CTA on small screens */
+  .nav-toggle {
+    display: inline-flex;
+  }
+
+  .navbar .btn-sm {
+    display: none;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 24px 24px;
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
+    box-shadow: 0 10px 25px -10px rgba(15, 23, 42, 0.25);
+    display: none;
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  .nav-links a {
+    font-size: 0.95rem;
+  }
 } 
 
 /* ============================================
