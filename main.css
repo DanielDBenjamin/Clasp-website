@@ -420,6 +420,47 @@ p { color: var(--text-muted); }
   color: var(--text-muted);
 }
 
+.footer-social {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.social-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.social-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-main);
+  background: var(--bg-surface);
+  transition: all 0.2s var(--ease);
+}
+
+.social-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  box-shadow: 0 6px 12px -4px rgba(22, 163, 74, 0.25);
+}
+
 @media (max-width: 900px) {
   .contact-container { grid-template-columns: 1fr; gap: 48px; }
   .enterprise-form .form-row { grid-template-columns: 1fr; }
