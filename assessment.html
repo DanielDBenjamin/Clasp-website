@@ -32,7 +32,7 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; height: 100%; }
 
     body {
       font-family: 'DM Sans', sans-serif;
@@ -41,6 +41,12 @@
       color: var(--text-primary);
       background: var(--bg-page);
       -webkit-font-smoothing: antialiased;
+    }
+
+    body.assessment-page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     a { text-decoration: none; color: inherit; }
@@ -134,6 +140,7 @@
     /* Assessment layout & quiz card */
     .assessment-main {
       padding: 6rem 2.5rem 4rem;
+      flex: 1 0 auto;
     }
     .assessment-container {
       max-width: 800px;
@@ -287,12 +294,17 @@
       line-height: 1.75; margin-bottom: 1.1rem;
     }
 
-    /* FOOTER — match new homepage */
+    /* FOOTER — fixed height */
     .footer {
-      padding: 1.75rem 2.5rem;
+      height: 90px;
+      padding: 0 2.5rem;
       border-top: 1px solid var(--border-light);
-      display: flex; justify-content: space-between;
-      align-items: center; flex-wrap: wrap; gap: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: nowrap;
+      overflow: hidden;
     }
     .footer-brand {
       display: flex;
@@ -325,11 +337,6 @@
       .assessment-main { padding: 4.5rem 1.25rem 3.5rem; }
       .quiz-card { padding: 2.25rem 1.5rem; }
       .result-actions { flex-direction: column; }
-      .footer {
-        padding: 1.5rem 1.25rem;
-        flex-direction: column;
-        align-items: flex-start;
-      }
     }
   </style>
 </head>
@@ -389,7 +396,7 @@
     <div class="footer-brand">
       <img src="images/icon-no-brackground.png" alt="CLASP Cybersecurity" class="footer-logo-img">
       <div>
-        <div class="footer-logo">CLASP<span>.</span> Cybersecurity</div>
+        
         <div class="footer-reg">Clasp (Pty) Ltd &nbsp;·&nbsp; Reg. 2023/161205/07 &nbsp;·&nbsp; www.clasp.co.za</div>
       </div>
     </div>
