@@ -6,163 +6,769 @@
   <meta name="description" content="CLASP - Cybersecurity and FSCA Joint Standards Compliance for FSPs">
   <title>CLASP | FSCA Cyber Compliance</title>
   <link rel="icon" type="image/png" href="images/favicon.png">
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="main.css">
-  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script> 
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green-dark:    #085041;
+      --green-mid:     #0F6E56;
+      --green-bright:  #1D9E75;
+      --green-light:   #9FE1CB;
+      --green-pale:    #E1F5EE;
+      --text-primary:  #1A1A18;
+      --text-secondary:#5F5E5A;
+      --text-muted:    #888780;
+      --border:        #D3D1C7;
+      --border-light:  #EBEBEA;
+      --bg-page:       #FAFAF8;
+      --bg-surface:    #FFFFFF;
+      --bg-subtle:     #F4F4F1;
+      --radius-sm:     6px;
+      --radius-md:     10px;
+      --radius-lg:     14px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: var(--bg-page);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── NAV ──────────────────────────────────────────────────────────── */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 90px;
+      background: rgba(250,250,248,0.93);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .logo {
+      width: auto;
+      height: 70px;
+      display: block;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px; letter-spacing: -0.3px;
+      color: var(--text-primary);
+      width: auto;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-logo span {
+      color: var(--green-bright);
+      display: inline-flex;
+      align-items: center;
+    }
+    .nav-cta {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 500;
+      padding: 9px 22px;
+      background: var(--green-mid);
+      color: #fff;
+      border: none; border-radius: var(--radius-sm);
+      cursor: pointer; text-decoration: none;
+      transition: background 0.15s;
+      display: inline-block;
+    }
+    .nav-cta:hover { background: var(--green-dark); }
+
+    /* ── HERO ─────────────────────────────────────────────────────────── */
+    .hero {
+      padding: 6rem 2.5rem 5rem;
+      max-width: 720px; margin: 0 auto;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      font-size: 12px; font-weight: 500;
+      padding: 5px 16px;
+      background: var(--green-pale);
+      color: var(--green-dark);
+      border-radius: 20px;
+      margin-bottom: 1.75rem;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(34px, 5vw, 52px);
+      font-weight: 400;
+      line-height: 1.13;
+      letter-spacing: -0.5px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--green-bright);
+    }
+    .hero-body {
+      font-size: 18px; font-weight: 300;
+      line-height: 1.75;
+      color: var(--text-secondary);
+      margin-bottom: 2.5rem;
+    }
+    .btn-primary {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; font-weight: 500;
+      padding: 13px 30px;
+      background: var(--green-mid);
+      color: #fff;
+      border: none; border-radius: var(--radius-sm);
+      cursor: pointer; text-decoration: none;
+      transition: background 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--green-dark); }
+    .hero-note {
+      margin-top: 0.9rem;
+      font-size: 13px; font-weight: 300;
+      color: var(--text-muted);
+    }
+
+    /* ── SHARED ───────────────────────────────────────────────────────── */
+    .divider { border: none; border-top: 1px solid var(--border-light); }
+
+    .section {
+      padding: 5rem 2.5rem;
+      max-width: 980px; margin: 0 auto;
+    }
+    .alt-wrap {
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border-light);
+      border-bottom: 1px solid var(--border-light);
+    }
+
+    .eyebrow {
+      font-size: 11px; font-weight: 500;
+      color: var(--green-bright);
+      letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .sec-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(24px, 3vw, 32px);
+      font-weight: 400; line-height: 1.2;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.85rem;
+    }
+    .sec-body {
+      font-size: 15px; font-weight: 300;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      max-width: 560px;
+    }
+
+    /* ── AUDIENCE ─────────────────────────────────────────────────────── */
+    .aud-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 12px; margin-top: 2.5rem;
+    }
+    .aud-card {
+      padding: 1.75rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .aud-card:hover {
+      border-color: var(--green-light);
+      box-shadow: 0 4px 20px rgba(15,110,86,0.07);
+    }
+    .aud-role {
+      font-size: 11px; font-weight: 500;
+      color: var(--green-bright);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 0.65rem;
+    }
+    .aud-h {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px; font-weight: 400; line-height: 1.3;
+      margin-bottom: 0.65rem;
+    }
+    .aud-b {
+      font-size: 13px; font-weight: 300;
+      color: var(--text-secondary); line-height: 1.65;
+    }
+    .aud-q {
+      margin-top: 1.25rem; padding-top: 1.25rem;
+      border-top: 1px solid var(--border-light);
+      font-size: 13px; font-style: italic;
+      color: var(--text-muted);
+    }
+
+    /* ── SELF-ASSESSMENT ──────────────────────────────────────────────── */
+    .assess-intro {
+      text-align: center;
+      max-width: 580px; margin: 0 auto;
+    }
+    .assess-wrap {
+      max-width: 680px; margin: 2.5rem auto 0;
+    }
+    .assess-options {
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .assess-opt {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 1rem 1.25rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      user-select: none;
+    }
+    .assess-opt:hover {
+      border-color: var(--green-bright);
+      background: var(--green-pale);
+    }
+    .assess-opt.selected {
+      border-color: var(--green-bright);
+      background: var(--green-pale);
+    }
+    .assess-num {
+      width: 28px; height: 28px; flex-shrink: 0;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--bg-subtle);
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .assess-opt.selected .assess-num {
+      background: var(--green-bright);
+      color: #fff;
+      border-color: var(--green-bright);
+    }
+    .assess-text { flex: 1; }
+    .assess-title {
+      font-size: 14px; font-weight: 500; margin-bottom: 3px;
+    }
+    .assess-desc {
+      font-size: 13px; font-weight: 300;
+      color: var(--text-secondary); line-height: 1.55;
+    }
+    .assess-opt.selected .assess-desc { color: var(--green-mid); }
+
+    /* Progress bar */
+    .progress-wrap { margin-top: 1.75rem; display: none; }
+    .progress-labels {
+      display: flex; justify-content: space-between;
+      font-size: 11px; color: var(--text-muted);
+      margin-bottom: 7px;
+    }
+    .progress-track {
+      height: 6px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: 6px; overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--green-bright);
+      border-radius: 6px;
+      transition: width 0.45s ease;
+      width: 0%;
+    }
+
+    /* Result */
+    .assess-result {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: var(--green-pale);
+      border: 1px solid var(--green-bright);
+      border-radius: var(--radius-lg);
+      display: none;
+    }
+    .assess-result.visible { display: block; }
+    .result-label {
+      font-size: 11px; font-weight: 500;
+      color: var(--green-mid);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .result-text {
+      font-size: 14px; font-weight: 300;
+      color: var(--green-dark);
+      line-height: 1.75; margin-bottom: 1.1rem;
+    }
+    .result-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 500;
+      padding: 10px 20px;
+      background: var(--green-mid); color: #fff;
+      border: none; border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .result-btn:hover { background: var(--green-dark); }
+
+    /* ── SERVICES ─────────────────────────────────────────────────────── */
+    .help-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px; margin-top: 2.5rem;
+    }
+    @media (max-width: 700px) {
+      .help-grid { grid-template-columns: 1fr; }
+    }
+    .help-card {
+      padding: 1.75rem;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      display: flex; flex-direction: column;
+    }
+    .help-icon {
+      width: 38px; height: 38px;
+      border-radius: var(--radius-sm);
+      background: var(--green-pale);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.1rem;
+    }
+    .help-icon svg {
+      width: 16px; height: 16px;
+      stroke: var(--green-mid); fill: none;
+      stroke-width: 1.5;
+      stroke-linecap: round; stroke-linejoin: round;
+    }
+    .help-h {
+      font-size: 15px; font-weight: 500;
+      margin-bottom: 0.5rem;
+    }
+    .help-b {
+      font-size: 13px; font-weight: 300;
+      color: var(--text-secondary); line-height: 1.65;
+      flex: 1;
+    }
+    .help-tag {
+      display: inline-block; margin-top: 1.1rem;
+      font-size: 11px; font-weight: 500;
+      padding: 3px 10px;
+      background: var(--bg-subtle);
+      border-radius: 20px;
+      color: var(--text-muted);
+      align-self: flex-start;
+    }
+
+    /* ── CONTACT ──────────────────────────────────────────────────────── */
+    .contact-section {
+      background: var(--bg-surface);
+      border-top: 1px solid var(--border-light);
+      padding: 5rem 2.5rem;
+    }
+    .contact-wrap {
+      max-width: 560px; margin: 0 auto;
+      text-align: center;
+    }
+    .contact-form {
+      text-align: left;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-top: 2rem;
+    }
+    .form-row { margin-bottom: 14px; }
+    label {
+      display: block;
+      font-size: 12px; font-weight: 500;
+      color: var(--text-secondary);
+      margin-bottom: 5px;
+    }
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 300;
+      padding: 9px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--bg-surface);
+      color: var(--text-primary);
+      appearance: none;
+      transition: border-color 0.15s;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--green-bright);
+    }
+    .form-submit {
+      width: 100%; margin-top: 8px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; font-weight: 500;
+      padding: 13px;
+      background: var(--green-mid); color: #fff;
+      border: none; border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .form-submit:hover { background: var(--green-dark); }
+    .form-note {
+      margin-top: 10px; text-align: center;
+      font-size: 12px; font-weight: 300;
+      color: var(--text-muted);
+    }
+
+    .contact-details {
+      display: flex; flex-wrap: wrap;
+      gap: 1.5rem; margin-top: 2rem;
+      justify-content: center;
+    }
+    .cd-item { font-size: 14px; }
+    .cd-label {
+      font-size: 11px; font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.05em; text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .cd-item a {
+      color: var(--text-primary); text-decoration: none;
+      font-weight: 400;
+    }
+    .cd-item a:hover { color: var(--green-mid); }
+
+    /* ── FOOTER ───────────────────────────────────────────────────────── */
+    .footer {
+      padding: 1.75rem 2.5rem;
+      border-top: 1px solid var(--border-light);
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .footer-logo-img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px; color: var(--text-primary);
+    }
+    .footer-logo span { color: var(--green-bright); }
+    .footer-reg {
+      font-size: 12px; font-weight: 300;
+      color: var(--text-muted); margin-top: 3px;
+    }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-size: 13px; font-weight: 300;
+      color: var(--text-secondary); text-decoration: none;
+    }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    /* ── RESPONSIVE ───────────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .nav { padding: 0 1.25rem; }
+      .hero { padding: 4rem 1.25rem 3.5rem; }
+      .section { padding: 3.5rem 1.25rem; }
+      .contact-section { padding: 3.5rem 1.25rem; }
+      .footer { padding: 1.5rem 1.25rem; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
 <body>
 
-  <nav class="navbar">
-    <div class="container nav-container">
-      <a href="/" class="brand">
-        <img src="images/whitelogo.png" alt="CLASP Cyber" class="nav-logo">
-      </a>
-        <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      <ul class="nav-links">
-        <li><a href="index.html" class="nav-active">Home</a></li>
-        <li><a href="assessment.html">Free Assessment</a></li>
-        <li><a href="services.html">Solutions</a></li>
-        <li><a href="index.html#standards">FSCA Standards</a></li>
-        <li><a href="about.html">VISO Advisory</a></li>
-      </ul>
-      <a href="#contact" class="btn btn-primary btn-sm">Schedule Assessment</a>
-    </div>
+  <!-- NAV -->
+  <nav class="nav">
+    <a class="nav-logo" href="#"><span>
+      <img src="images/logo-nobckgrnd.png" alt="CLASP Cybersecurity" class="logo">
+    </span></a>
+    <a class="nav-cta" href="#contact">Get in touch</a>
   </nav>
 
-  <main>
-    <section class="hero">
-      <div class="hero-pattern"></div>
-      <div class="container hero-container">
-        <div class="badge">Financial Sector Compliance</div>
-        <h1>FSCA Cyber Compliance. <br><span class="text-accent">Simplified.</span></h1>
-        <p class="hero-subtitle">
-          A turnkey cybersecurity advisory offering designed specifically to help FSPs meet the stringent requirements of FSCA Joint Standards 1 of 2023 and 2 of 2024.
-        </p>
-        <div class="button-group">
-          <a href="#contact" class="btn btn-primary">Book IT Risk Assessment</a>
-          <a href="services.html" class="btn btn-outline">Explore Solutions</a>
-        </div>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">JS1 &amp; JS2 — in force now</div>
+    <h1>Your governing body is<br><em>personally accountable</em><br>for cybersecurity.</h1>
+    <p class="hero-body">CLASP helps small and mid-size FSPs get — and stay — compliant with Joint Standards 1 and 2. Practical, proportionate, and built for the way your business actually works.</p>
+    <a class="btn-primary" href="#contact">Talk to us — no obligation</a>
+  </section>
+
+  <hr class="divider">
+
+  <!-- WHO WE WORK WITH -->
+  <section class="section">
+    <div class="eyebrow">Who we work with</div>
+    <div class="sec-title">We understand your perspective</div>
+    <p class="sec-body">The Joint Standards are complex, but compliance doesn't have to be. We offer stakeholder-specific engagement, ensuring that every department and leader receives the targeted insights needed for full regulatory alignment.</p>
+
+    <div class="aud-grid">
+      <div class="aud-card">
+        <div class="aud-role">Compliance Officer</div>
+        <div class="aud-h">You know the obligation exists. You need someone to deliver it.</div>
+        <div class="aud-b">You need a structured partner who can produce the documentation, run the testing programme, and give you something concrete to present to the board.</div>
+        <div class="aud-q">"I know we're not compliant. Where do we even start?"</div>
       </div>
-    </section>
-
-    
-    <section id="standards" style="padding: 100px 0; background: var(--bg-surface); border-bottom: 1px solid var(--border-subtle);">
-      <div class="container">
-        <div class="section-header">
-          <h2>The FSCA Mandates</h2>
-          <p>Our entire cybersecurity framework is mapped directly to the Authority's regulatory requirements.</p>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 32px;">
-          <div class="trust-card">
-            <div class="card-line"></div>
-            <div style="font-family: monospace; color: var(--accent); font-weight: 600; margin-bottom: 8px;">JS 1 of 2023</div>
-            <h3>IT Governance & Risk Management</h3>
-            <p style="margin-bottom: 24px;">Sets out the principles for IT governance, risk management frameworks, third-party risk management, and the protection of sensitive information.</p>
-            <a href="https://www.resbank.co.za/en/home/publications/publication-detail-pages/prudential-authority/pa-public-awareness/Communication/2023/Joint-Communication-4-of-2023-Publication-of-the-Joint-Standard-IT-Gov-and-Risk" target="_blank" class="btn btn-outline btn-sm">Read Official Standard</a>
-          </div>
-          
-          <div class="trust-card">
-            <div class="card-line"></div>
-            <div style="font-family: monospace; color: var(--accent); font-weight: 600; margin-bottom: 8px;">JS 2 of 2024</div>
-            <h3>Cybersecurity & Cyber Resilience</h3>
-            <p style="margin-bottom: 24px;">Mandates robust cybersecurity practices, access management, continuous threat monitoring, incident response planning, and rigorous vulnerability testing.</p>
-            <a href="https://www.resbank.co.za/en/home/publications/publication-detail-pages/prudential-authority/pa-public-awareness/Communication/2024/Joint-Communication-2-of-2024-Publication-of-the-Joint-Standard-Cybersecurity-and-cyber-resilience" target="_blank" class="btn btn-outline btn-sm">Read Official Standard</a>
-          </div>
-        </div>
+      <div class="aud-card">
+        <div class="aud-role">Director / Governing Body</div>
+        <div class="aud-h">You approved the MSP contract. That is not enough.</div>
+        <div class="aud-b">JS2 §4.1 places personal accountability on you. That means approving a framework, receiving reports, and being able to demonstrate — not just assert — that controls are in place.</div>
+        <div class="aud-q">"What exactly does the FSCA expect from our board?"</div>
       </div>
-    </section>
-
-    <section id="contact" class="contact-section">
-      <div class="container contact-container">
-        
-        <div class="contact-info">
-          <h2>Secure Your Operations.</h2>
-          <p>Get in touch with our advisory team to discuss your FSCA Joint Standards compliance requirements.</p>
-          
-          <div class="contact-details">
-            <div class="detail-item">
-              <strong>Email</strong>
-              <span>info@clasp.co.za</span>
-            </div>
-            <div class="detail-item">
-              <strong>Phone</strong>
-              <span>+27 87 0878749</span>
-            </div>
-            <div class="detail-item">
-              <strong>Headquarters</strong>
-              <span>102 Howard Terraces, Rose Innes Way<br>Pinelands, South Africa</span>
-            </div>
-          </div>
-
-          <div class="social-links">
-            <span class="social-label">Connect with us</span>
-            <a href="https://www.linkedin.com/company/clasp-pty-ltd" class="social-pill" target="_blank" rel="noopener">LinkedIn</a>
-          </div>
-        </div>
-        
-        <div class="contact-form-wrapper">
-          <form class="enterprise-form" id="contact-form">
-            <div class="form-row">
-              <div class="form-group">
-                <label for="name">Full Name</label>
-                <input type="text" id="name" name="name" required>
-              </div>
-              <div class="form-group">
-                <label for="company">FSP Name</label>
-                <input type="text" id="company" name="company" required>
-              </div>
-            </div>
-            
-            <div class="form-group">
-              <label for="email">Work Email</label>
-              <input type="email" id="email" name="email" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="message">Current Compliance Status</label>
-              <textarea id="message" name="message" rows="4" placeholder="Briefly describe your current progress with JS 1 and JS 2..." required></textarea>
-            </div>
-            
-            <div class="cf-turnstile" data-sitekey="0x4AAAAAACrjuvZchyjGcZKr" style="margin-bottom: 20px;"></div>
-
-            <button type="submit" class="btn btn-primary w-100" id="submit-btn">Request IT Assessment</button>
-            
-            <div id="form-status" style="display: none; margin-top: 16px; padding: 12px; border-radius: 4px; font-weight: 500; text-align: center;"></div>
-          </form>
-        </div>
-
+      <div class="aud-card">
+        <div class="aud-role">CEO / Business Owner</div>
+        <div class="aud-h">You run a well-managed business. JS2 should not feel like a crisis.</div>
+        <div class="aud-b">Getting this right is achievable for a well-run FSP of your size. It requires the right expert — not a large internal team or a full-time CISO.</div>
+        <div class="aud-q">"Is this really as serious as they say? How much work is it?"</div>
       </div>
-    </section>
-  </main>
-
-  <section class="cta-banner">
-    <div class="cta-overlay"></div>
-    <div class="container cta-container">
-      <h2>Not an IT Managed Service Provider.</h2>
-      <p>We focus exclusively on cyber governance, risk, and compliance. We collaborate seamlessly with your existing IT department or MSP.</p>
-      <a href="#contact" class="btn btn-accent cta-btn">Partner With Us</a>
     </div>
   </section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <p>&copy; 2026 CLASP Cybersecurity. All rights reserved.</p>
-        <div class="footer-social">
-          <a href="https://www.linkedin.com/company/clasp-pty-ltd" class="social-pill" target="_blank" rel="noopener">LinkedIn</a>
+  <!-- SELF-ASSESSMENT -->
+  <div class="alt-wrap">
+    <section class="section">
+      <div class="assess-intro">
+        <div class="eyebrow">Quick self-assessment</div>
+        <div class="sec-title">Benchmark Your Regulatory Readiness?</div>
+        <p class="sec-body" style="margin: 0 auto;">Select the position that sounds most like your institution. We'll tell you what it means and what to do next.</p>
+<div style="margin-top: 25px;">
+    
+    <a class="btn-primary" href="assessment.html">
+        Take a quick self-assessment test here
+    </a>
+</div>	
+      </div>
+
+      <div class="assess-wrap">
+        <div class="assess-options">
+
+          <div class="assess-opt" onclick="selectOption(this, 1)">
+            <div class="assess-num">1</div>
+            <div class="assess-text">
+              <div class="assess-title">Starting out</div>
+              <div class="assess-desc">JS2 is on the radar but nothing structured has begun. No board-approved framework, no asset inventory, no incident response plan.</div>
+            </div>
+          </div>
+
+          <div class="assess-opt" onclick="selectOption(this, 2)">
+            <div class="assess-num">2</div>
+            <div class="assess-text">
+              <div class="assess-title">In progress</div>
+              <div class="assess-desc">An MSP is in place and some policies exist, but no JS2 framework has been produced and the board hasn't formally approved anything.</div>
+            </div>
+          </div>
+
+          <div class="assess-opt" onclick="selectOption(this, 3)">
+            <div class="assess-num">3</div>
+            <div class="assess-text">
+              <div class="assess-title">Documented but unverified</div>
+              <div class="assess-desc">Documentation exists but hasn't been independently reviewed and controls haven't been tested. It's unclear whether what's on paper reflects reality.</div>
+            </div>
+          </div>
+
+          <div class="assess-opt" onclick="selectOption(this, 4)">
+            <div class="assess-num">4</div>
+            <div class="assess-text">
+              <div class="assess-title">Compliant but ageing</div>
+              <div class="assess-desc">The institution was in good shape at a point in time, but the annual review required by JS2 §6.2.2 has lapsed and documentation no longer reflects current operations.</div>
+            </div>
+          </div>
+
+          <div class="assess-opt" onclick="selectOption(this, 5)">
+            <div class="assess-num">5</div>
+            <div class="assess-text">
+              <div class="assess-title">Actively maintained</div>
+              <div class="assess-desc">The framework is board-approved, controls are tested on schedule, the MSP is overseen through a defined process, and the annual review is running.</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="progress-wrap" id="progress-wrap">
+          <div class="progress-labels">
+            <span>Not started</span>
+            <span>Actively maintained</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="assess-result" id="result">
+          <div class="result-label" id="result-label"></div>
+          <div class="result-text" id="result-text"></div>
+          <button class="result-btn" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Talk to CLASP about this ↓</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- HOW WE HELP -->
+  <section class="section">
+    <div class="eyebrow">How we help</div>
+    <div class="sec-title">Qualified Insight. Independent Objectivity</div>
+    <p class="sec-body">CLASP is an advisory practice. We assess, document, and oversee—we do not deliver technical controls. That separation is deliberate: it keeps our advice unbiased, your audit findings defensible, and your regulatory posture transparent.</p>
+
+    <div class="help-grid">
+      <div class="help-card">
+        <div class="help-icon">
+          <svg viewBox="0 0 16 16"><rect x="2" y="2" width="12" height="12" rx="2"/><path d="M5 8h6M5 5h6M5 11h3"/></svg>
+        </div>
+        <div class="help-h">Full compliance engagement</div>
+        <div class="help-b">Gap analysis against all JS1 and JS2 requirements, full documentation pack, MSP contract review, and governing body presentation. Built from scratch and delivered in around six weeks.</div>
+        <div class="help-tag">For positions 1 and 2</div>
+      </div>
+      <div class="help-card">
+        <div class="help-icon">
+          <svg viewBox="0 0 16 16"><path d="M3 8l3 3 7-7"/></svg>
+        </div>
+        <div class="help-h">Review and verification</div>
+        <div class="help-b">Independent review of existing documentation. We close the gaps, re-establish the annual review cycle required by JS2 §6.2.2, and brief the governing body.</div>
+        <div class="help-tag">For positions 3 and 4</div>
+      </div>
+      <div class="help-card">
+        <div class="help-icon">
+          <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
+        </div>
+        <div class="help-h">Ongoing vCISO retainer</div>
+        <div class="help-b">Annual independent framework review, quarterly MSP oversight, tabletop exercises, governing body reporting, and incident response support — without a full-time CISO.</div>
+        <div class="help-tag">For all positions</div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="contact">
+    <div class="contact-wrap">
+      <div class="eyebrow" style="text-align:center;">Get in touch</div>
+      <div class="sec-title" style="text-align:center;">Let's start with a conversation.</div>
+      <p class="sec-body" style="margin: 0 auto 0.5rem; text-align:center;">No obligation. No pressure. Just clarity on where you stand and what — if anything — needs to happen next.</p>
+
+      <div class="contact-form">
+        <div class="form-row">
+          <label for="f-name">Your name</label>
+          <input type="text" id="f-name" placeholder="Jane Smith">
+        </div>
+        <div class="form-row">
+          <label for="f-inst">Institution</label>
+          <input type="text" id="f-inst" placeholder="ABC Asset Management (Pty) Ltd">
+        </div>
+        <div class="form-row">
+          <label for="f-role">Your role</label>
+          <select id="f-role">
+            <option value="">Select...</option>
+            <option>Compliance Officer</option>
+            <option>Director / Board Member</option>
+            <option>CEO / Business Owner</option>
+            <option>Key Individual</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label for="f-email">Email address</label>
+          <input type="email" id="f-email" placeholder="jane@yourfsp.co.za">
+        </div>
+        <div class="form-row">
+          <label for="f-msg">Anything useful to know? (optional)</label>
+          <input type="text" id="f-msg" placeholder="e.g. we have an MSP in place, due a regulatory visit soon...">
+        </div>
+        <button class="form-submit" type="button">Send message</button>
+        <p class="form-note">We respond within one business day. No spam, ever.</p>
+      </div>
+
+      <div class="contact-details">
+        <div class="cd-item">
+          <div class="cd-label">Email</div>
+          <a href="mailto:info@clasp.co.za">info@clasp.co.za</a>
+        </div>
+        <div class="cd-item">
+          <div class="cd-label">Phone</div>
+          <a href="tel:0861551105">0861 551 105</a>
+        </div>
+        <div class="cd-item">
+          <div class="cd-label">Office</div>
+          102 Howard Terraces, Pinelands, 7405
         </div>
       </div>
     </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-brand">
+      <img src="images/icon-no-brackground.png" alt="CLASP Cybersecurity" class="footer-logo-img">
+      <div>
+      <div class="footer-logo"></div>
+      <div class="footer-reg">Clasp (Pty) Ltd &nbsp;·&nbsp; Reg. 2023/161205/07 &nbsp;·&nbsp; www.clasp.co.za</div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy policy</a>
+      <a href="mailto:info@clasp.co.za">info@clasp.co.za</a>
+    </div>
   </footer>
-  <script src="main.js"></script>
+
+  <script>
+    const results = {
+      1: {
+        label: 'Position 1 — Starting out',
+        pct: 10,
+        text: 'You\'re not alone — most FSPs at your stage are in the same position. The good news is that starting structured work now, before a supervisory visit or incident, means you control the pace. A full compliance engagement is the right starting point. We\'ll get you to Position 5 in around six weeks.'
+      },
+      2: {
+        label: 'Position 2 — In progress',
+        pct: 30,
+        text: 'You have the right instincts and some groundwork in place. What\'s missing is a JS2-specific framework approved by the governing body, and documentation that holds up to scrutiny. A full compliance engagement will close those gaps quickly, building on what you already have rather than starting over.'
+      },
+      3: {
+        label: 'Position 3 — Documented but unverified',
+        pct: 55,
+        text: 'This is a common and underestimated risk position. Documentation that hasn\'t been independently reviewed or tested provides limited regulatory protection. Our review and verification engagement is designed exactly for this — we validate what works, close what doesn\'t, and give you defensible evidence.'
+      },
+      4: {
+        label: 'Position 4 — Compliant but ageing',
+        pct: 75,
+        text: 'You\'ve done the hard work. What you need now is the annual review that JS2 §6.2.2 explicitly requires — plus a check that your documentation still reflects how you actually operate. Our review and verification engagement will get you current and re-establish the ongoing review cycle.'
+      },
+      5: {
+        label: 'Position 5 — Actively maintained',
+        pct: 100,
+        text: 'Well done — you\'re where every FSP should be. If CLASP is already supporting you, we\'ll keep you there. If you\'ve reached this position independently, an independent review confirms that your documentation and controls align with what the FSCA would expect to see.'
+      }
+    };
+
+    function selectOption(el, num) {
+      document.querySelectorAll('.assess-opt').forEach(function(o) {
+        o.classList.remove('selected');
+      });
+      el.classList.add('selected');
+
+      var r = results[num];
+
+      var pw = document.getElementById('progress-wrap');
+      pw.style.display = 'block';
+      document.getElementById('progress-fill').style.width = r.pct + '%';
+
+      document.getElementById('result-label').textContent = r.label;
+      document.getElementById('result-text').textContent = r.text;
+
+      var res = document.getElementById('result');
+      res.classList.add('visible');
+
+      setTimeout(function() {
+        res.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 120);
+    }
+  </script>
+
 </body>
 </html>

@@ -6,30 +6,341 @@
   <meta name="description" content="Free FSCA Cyber Compliance Readiness Assessment">
   <title>Compliance Readiness Assessment | CLASP</title>
   <link rel="icon" type="image/png" href="images/favicon.png">
-  
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <link rel="stylesheet" href="../main.css">
-  <link rel="stylesheet" href="../assessment.css">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green-dark:    #085041;
+      --green-mid:     #0F6E56;
+      --green-bright:  #1D9E75;
+      --green-light:   #9FE1CB;
+      --green-pale:    #E1F5EE;
+      --text-primary:  #1A1A18;
+      --text-secondary:#5F5E5A;
+      --text-muted:    #888780;
+      --border:        #D3D1C7;
+      --border-light:  #EBEBEA;
+      --bg-page:       #FAFAF8;
+      --bg-surface:    #FFFFFF;
+      --bg-subtle:     #F4F4F1;
+      --radius-sm:     6px;
+      --radius-md:     10px;
+      --radius-lg:     14px;
+      --ease:          cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background: var(--bg-page);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* NAV — match new homepage */
+    .nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 2.5rem; height: 90px;
+      background: rgba(250,250,248,0.93);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-light);
+    }
+    .logo {
+      width: auto;
+      height: 70px;
+      display: block;
+    }
+    .nav-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px; letter-spacing: -0.3px;
+      color: var(--text-primary);
+      width: auto;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-logo span {
+      color: var(--green-bright);
+      display: inline-flex;
+      align-items: center;
+    }
+    .nav-cta {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 500;
+      padding: 9px 22px;
+      background: var(--green-mid);
+      color: #fff;
+      border: none; border-radius: var(--radius-sm);
+      cursor: pointer; text-decoration: none;
+      transition: background 0.15s;
+      display: inline-block;
+    }
+    .nav-cta:hover { background: var(--green-dark); }
+
+    /* Generic buttons for quiz controls */
+    .btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px; font-weight: 500;
+      padding: 10px 22px;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid transparent;
+      background: transparent;
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+    .btn-primary.btn {
+      background: var(--green-mid);
+      color: #fff;
+      border-color: var(--green-mid);
+    }
+    .btn-outline {
+      background: #fff;
+      color: var(--text-secondary);
+      border-color: var(--border-light);
+    }
+    .btn-outline:hover {
+      border-color: var(--green-mid);
+      color: var(--green-mid);
+    }
+    .btn-sm { padding: 8px 18px; font-size: 13px; }
+
+    /* Badge pill */
+    .badge {
+      display: inline-block;
+      font-size: 12px; font-weight: 500;
+      padding: 5px 16px;
+      background: var(--green-pale);
+      color: var(--green-dark);
+      border-radius: 20px;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Assessment layout & quiz card */
+    .assessment-main {
+      padding: 6rem 2.5rem 4rem;
+    }
+    .assessment-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .quiz-header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+    .quiz-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(30px, 4vw, 40px);
+      font-weight: 400;
+      line-height: 1.2;
+      letter-spacing: -0.3px;
+      margin-bottom: 0.75rem;
+    }
+    .quiz-header p {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text-secondary);
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .quiz-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 2.75rem 2.5rem;
+      box-shadow: 0 10px 30px -5px rgba(0,0,0,0.05);
+      min-height: 400px;
+    }
+
+    /* Progress bar */
+    .progress-bar-container {
+      width: 100%;
+      height: 6px;
+      background: var(--bg-subtle);
+      border-radius: 6px;
+      margin-bottom: 32px;
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      background: var(--green-bright);
+      width: 0%;
+      transition: width 0.4s var(--ease);
+    }
+
+    .question-counter {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--green-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 16px;
+    }
+
+    .question-title {
+      font-family: 'DM serif', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+      color: #000;
+    }
+    .question-text {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.0rem;
+      font-weight: 400;
+      margin-bottom: 28px;
+      line-height: 1.4;
+      letter-spacing: -0.2px;
+    }
+
+    .options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .option-btn {
+      width: 100%;
+      text-align: left;
+      padding: 14px 18px;
+      background: var(--bg-subtle);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      font-size: 0.98rem;
+      font-weight: 400;
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, box-shadow 0.15s;
+    }
+    .option-btn:hover {
+      border-color: var(--green-bright);
+      background: var(--green-pale);
+    }
+    .option-btn.selected {
+      border-color: var(--green-bright);
+      background: var(--green-pale);
+      box-shadow: 0 0 0 1px var(--green-bright);
+    }
+
+    .quiz-navigation {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 32px;
+      padding-top: 24px;
+      border-top: 1px solid var(--border-light);
+    }
+    .quiz-navigation .btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .hidden { display: none !important; }
+    .text-center { text-align: center; }
+
+    .result-actions {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    /* Result box – match homepage self-assessment */
+    .result-box {
+      margin-top: 1.5rem;
+      padding: 1.5rem;
+      background: var(--green-pale);
+      border: 1px solid var(--green-bright);
+      border-radius: var(--radius-lg);
+      text-align: left;
+    }
+    .result-label {
+      font-size: 11px; font-weight: 500;
+      color: var(--green-mid);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+    .result-text {
+      font-size: 14px; font-weight: 300;
+      color: var(--green-dark);
+      line-height: 1.75; margin-bottom: 1.1rem;
+    }
+
+    /* FOOTER — match new homepage */
+    .footer {
+      padding: 1.75rem 2.5rem;
+      border-top: 1px solid var(--border-light);
+      display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .footer-logo-img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+    .footer-logo {
+      font-family: 'DM Serif Display', serif;
+      font-size: 18px; color: var(--text-primary);
+    }
+    .footer-logo span { color: var(--green-bright); }
+    .footer-reg {
+      font-size: 12px; font-weight: 300;
+      color: var(--text-muted); margin-top: 3px;
+    }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-size: 13px; font-weight: 300;
+      color: var(--text-secondary); text-decoration: none;
+    }
+    .footer-links a:hover { color: var(--text-primary); }
+
+    @media (max-width: 600px) {
+      .nav { padding: 0 1.25rem; }
+      .assessment-main { padding: 4.5rem 1.25rem 3.5rem; }
+      .quiz-card { padding: 2.25rem 1.5rem; }
+      .result-actions { flex-direction: column; }
+      .footer {
+        padding: 1.5rem 1.25rem;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
 </head>
 <body class="assessment-page">
 
-  <nav class="navbar">
-    <div class="container nav-container">
-      <a href="index.html" class="brand">
-        <img src="images/whitelogo.png" alt="CLASP Cyber" class="nav-logo">
-      </a>
-      <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
-        <li><a href="assessment.html" class="nav-active">Free Assessment</a></li>
-        <li><a href="services.html">Solutions</a></li>
-        <li><a href="index.html#standards">FSCA Standards</a></li>
-        <li><a href="about.html">VISO Advisory</a></li>
-      </ul>
-      <a href="index.html#contact" class="btn btn-primary btn-sm">Schedule Assessment</a>
-    </div>
+  <!-- NAV -->
+  <nav class="nav">
+    <a class="nav-logo" href="clasp-website-v2.html"><span>
+      <img src="images/logo-nobckgrnd.png" alt="CLASP Cybersecurity" class="logo">
+    </span></a>
+    <a class="nav-cta" href="clasp-website-v2.html#contact">Get in touch</a>
   </nav>
 
   <main class="assessment-main">
@@ -59,48 +370,32 @@
           <button id="btn-next" class="btn btn-primary" onclick="nextQuestion()" disabled>Next</button>
         </div>
 
-        <div id="result-container" class="hidden text-center">
-          
-          <h2 style="font-size: 2rem; margin-bottom: 8px; color: var(--text-main);">Your Readiness Score</h2>
-          <p style="color: var(--text-muted); margin-bottom: 56px;">Benchmarked against FSCA Joint Standards 1 & 2 requirements.</p>
-
-          <div class="score-line-wrapper">
-            <div class="score-line">
-              <div class="benchmark-tick" style="left: 45%;"></div>
-              <div class="benchmark-label" style="left: 45%;">Industry Avg (45)</div>
-              
-              <div class="user-score-marker" id="user-score-marker" style="left: 0%;">
-                <div class="user-score-tooltip" id="user-score-tooltip">0</div>
-              </div>
-            </div>
-            
-            <div class="score-labels">
-              <span>0 (At Risk)</span>
-              <span>100 (Compliant)</span>
+        <div id="result-container" class="hidden">
+          <div class="result-box">
+            <div id="result-title" class="result-label">Position</div>
+            <div id="result-desc" class="result-text"></div>
+            <div class="result-actions">
+              <a href="index.html#contact" class="btn btn-primary">Talk to CLASP about this ↓</a>
+              <button onclick="location.reload()" class="btn btn-outline">Retake assessment</button>
             </div>
           </div>
-
-          <h3 id="result-title" style="font-size: 1.5rem; margin-bottom: 16px;">Calculating...</h3>
-          <p id="result-desc" class="result-text"></p>
-          
-          <div class="result-actions">
-            <a href="index.html#contact" class="btn btn-primary">Request Full IT Audit</a>
-            <button onclick="location.reload()" class="btn btn-outline">Retake Assessment</button>
-          </div>
-          
         </div>
 
       </div>
     </div>
   </main>
+  <!-- FOOTER -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-bottom">
-        <p>&copy; 2026 CLASP Cybersecurity. All rights reserved.</p>
-        <div class="footer-social">
-          <a href="https://www.linkedin.com/company/clasp-pty-ltd" class="social-pill" target="_blank" rel="noopener">LinkedIn</a>
-        </div>
+    <div class="footer-brand">
+      <img src="images/icon-no-brackground.png" alt="CLASP Cybersecurity" class="footer-logo-img">
+      <div>
+        <div class="footer-logo">CLASP<span>.</span> Cybersecurity</div>
+        <div class="footer-reg">Clasp (Pty) Ltd &nbsp;·&nbsp; Reg. 2023/161205/07 &nbsp;·&nbsp; www.clasp.co.za</div>
       </div>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy policy</a>
+      <a href="mailto:info@clasp.co.za">info@clasp.co.za</a>
     </div>
   </footer>
 
