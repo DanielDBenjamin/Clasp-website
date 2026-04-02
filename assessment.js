@@ -132,64 +132,51 @@ function renderQuestion() {
   html += `<div class="options-grid">`;
 
   q.options.forEach((opt, index) => {
-    html += `<button class="option-btn${answers[currentQuestionIndex] === opt.score ? ' selected' : ''}" onclick="selectAnswer(${opt.score}, ${index})">${opt.text}</button>`;
+    const isSelected = answers[currentQuestionIndex] === opt.score;
+    html += `<button class="option-btn${isSelected ? ' selected' : ''}" onclick="selectAnswer(${opt.score}, ${index})">${opt.text}</button>`;
   });
 
   html += `</div>`;
+
   container.innerHTML = html;
 
-  // After re-render, reapply selected state if any
-  if (answers[currentQuestionIndex] !== null) {
-    const buttons = container.querySelectorAll('.option-btn');
-    buttons.forEach((btn, i) => {
-      const opt = q.options[i];
-      if (opt && opt.score === answers[currentQuestionIndex]) {
-        btn.classList.add('selected');
-      }
-    });
-  }
-
-  // Enable/disable Next button based on whether an answer is selected
+  // Update next button state and label
   if (nextBtn) {
     nextBtn.disabled = answers[currentQuestionIndex] === null;
-    nextBtn.textContent = currentQuestionIndex === questions.length - 1 ? 'Finish' : 'Next';
+    nextBtn.textContent =
+      currentQuestionIndex === questions.length - 1 ? 'Finish' : 'Next';
   }
-
-  updateNavButtons();
 }
 
-function selectAnswer(score, index) {
+function calculateTotalScore() {
+  return answers.reduce((sum, value) => sum + (value || 0), 0);
+}
+
+function selectAnswer(score, optionIndex) {
+  // Store score for the current question
   answers[currentQuestionIndex] = score;
 
   const container = document.getElementById("question-container");
-  const buttons = container ? container.querySelectorAll('.option-btn') : [];
-
-  buttons.forEach((btn, i) => {
-    btn.classList.toggle('selected', i === index);
-  });
-
   const nextBtn = document.getElementById("btn-next");
-  if (nextBtn) nextBtn.disabled = false;
-}
 
-function updateNavButtons() {
-  const prevBtn = document.getElementById("btn-prev");
-  if (prevBtn) {
-    prevBtn.disabled = currentQuestionIndex === 0;
+  if (container) {
+    const buttons = container.querySelectorAll('.option-btn');
+    buttons.forEach((btn, idx) => {
+      btn.classList.toggle('selected', idx === optionIndex);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.disabled = false;
   }
 }
 
 function nextQuestion() {
-  // Don't advance if nothing is selected
+  // Don't move on if nothing selected (defensive; button is normally disabled)
   if (answers[currentQuestionIndex] === null) return;
 
   if (currentQuestionIndex < questions.length - 1) {
     currentQuestionIndex++;
-    // Smooth scroll back to top of card for next question
-    const card = document.querySelector('.quiz-card');
-    if (card) {
-      card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
     renderQuestion();
   } else {
     showResults();
@@ -199,40 +186,13 @@ function nextQuestion() {
 function prevQuestion() {
   if (currentQuestionIndex === 0) return;
   currentQuestionIndex--;
-  const card = document.querySelector('.quiz-card');
-  if (card) {
-    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  }
   renderQuestion();
 }
 
-function calculateTotalScore() {
-  return answers.reduce((sum, value) => sum + (value || 0), 0);
-}
-
 function showResults() {
-  // Calculate final score from all stored answers
   const finalScore = calculateTotalScore();
 
-  // Hide Quiz UI, Show Results UI
-  document.getElementById("question-container").classList.add("hidden");
-  document.getElementById("progress-container").classList.add("hidden");
-  document.getElementById("quiz-header").classList.add("hidden");
-  document.getElementById("question-counter").classList.add("hidden");
-  document.getElementById("quiz-navigation").classList.add("hidden");
-  
-  const resultContainer = document.getElementById("result-container");
-  resultContainer.classList.remove("hidden");
-
-  const titleDisplay = document.getElementById("result-title");
-  const descDisplay = document.getElementById("result-desc");
-
-  // Band the score into the 5 positions
-  // 0–4   → Position 1 — Starting out
-  // 5–9   → Position 2 — In progress
-  // 10–13 → Position 3 — Documented but unverified
-  // 14–16 → Position 4 — Compliant but ageing
-  // 17–20 → Position 5 — Actively maintained
+  // Map 0–20 score to positions 1–5
   let band;
   if (finalScore <= 4) {
     band = 1;
@@ -246,32 +206,6 @@ function showResults() {
     band = 5;
   }
 
-  let label = '';
-  let text = '';
-
-  switch (band) {
-    case 1:
-      label = 'Position 1 — Starting out';
-      text = "You're not alone — most FSPs at your stage are in the same position. The good news is that starting structured work now, before a supervisory visit or incident, means you control the pace. A full compliance engagement is the right starting point. We'll get you to Position 5 in around six weeks.";
-      break;
-    case 2:
-      label = 'Position 2 — In progress';
-      text = "You have the right instincts and some groundwork in place. What's missing is a JS2-specific framework approved by the governing body, and documentation that holds up to scrutiny. A full compliance engagement will close those gaps quickly, building on what you already have rather than starting over.";
-      break;
-    case 3:
-      label = 'Position 3 — Documented but unverified';
-      text = "This is a common and underestimated risk position. Documentation that hasn't been independently reviewed or tested provides limited regulatory protection. Our review and verification engagement is designed exactly for this — we validate what works, close what doesn't, and give you defensible evidence.";
-      break;
-    case 4:
-      label = 'Position 4 — Compliant but ageing';
-      text = "You've done the hard work. What you need now is the annual review that JS2 §6.2.2 explicitly requires — plus a check that your documentation still reflects how you actually operate. Our review and verification engagement will get you current and re-establish the ongoing review cycle.";
-      break;
-    case 5:
-    default:
-      label = 'Position 5 — Actively maintained';
-      text = "Well done — you're where every FSP should be. If CLASP is already supporting you, we'll keep you there. If you've reached this position independently, an independent review confirms that your documentation and controls align with what the FSCA would expect to see.";
-      break;
-  }
-  titleDisplay.innerText = label;
-  descDisplay.innerText = text;
+  // Redirect back to homepage assessment section with tier encoded
+  window.location.href = `index.html?tier=${band}#assessment`;
 }

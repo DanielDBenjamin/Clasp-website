@@ -70,6 +70,11 @@
       display: inline-flex;
       align-items: center;
     }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
     .nav-cta {
       font-family: 'DM Sans', sans-serif;
       font-size: 14px; font-weight: 500;
@@ -223,13 +228,9 @@
       background: var(--bg-surface);
       border: 1px solid var(--border-light);
       border-radius: var(--radius-md);
-      cursor: pointer;
+      cursor: default;
       transition: border-color 0.15s, background 0.15s;
       user-select: none;
-    }
-    .assess-opt:hover {
-      border-color: var(--green-bright);
-      background: var(--green-pale);
     }
     .assess-opt.selected {
       border-color: var(--green-bright);
@@ -490,14 +491,16 @@
     <a class="nav-logo" href="#"><span>
       <img src="images/logo-nobckgrnd.png" alt="CLASP Cybersecurity" class="logo">
     </span></a>
-    <a class="nav-cta" href="#contact">Get in touch</a>
+    <div class="nav-actions">
+      <a class="nav-cta" href="assessment.html">Take an assessment</a>
+      <a class="nav-cta" href="#contact">Get in touch</a>
+    </div>
   </nav>
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-badge">JS1 &amp; JS2 — in force now</div>
     <h1>Your governing body is<br><em>personally accountable</em><br>for cybersecurity.</h1>
-    <p class="hero-body">CLASP helps small and mid-size FSPs get — and stay — compliant with Joint Standards 1 and 2. Practical, proportionate, and built for the way your business actually works.</p>
+    <p class="hero-body">CLASP helps small and mid-size FSPs get and stay compliant with Joint Standards 1 and 2. Practical, proportionate, and built for the way your business actually works.</p>
     <a class="btn-primary" href="#contact">Talk to us — no obligation</a>
   </section>
 
@@ -519,20 +522,20 @@
       <div class="aud-card">
         <div class="aud-role">Director / Governing Body</div>
         <div class="aud-h">You approved the MSP contract. That is not enough.</div>
-        <div class="aud-b">JS2 §4.1 places personal accountability on you. That means approving a framework, receiving reports, and being able to demonstrate — not just assert — that controls are in place.</div>
+        <div class="aud-b">JS2 §4.1 places personal accountability on you. That means approving a framework, receiving reports, and being able to demonstrate, not just assert, that controls are in place.</div>
         <div class="aud-q">"What exactly does the FSCA expect from our board?"</div>
       </div>
       <div class="aud-card">
         <div class="aud-role">CEO / Business Owner</div>
         <div class="aud-h">You run a well-managed business. JS2 should not feel like a crisis.</div>
-        <div class="aud-b">Getting this right is achievable for a well-run FSP of your size. It requires the right expert — not a large internal team or a full-time CISO.</div>
+        <div class="aud-b">Getting this right is achievable for a well-run FSP of your size. It requires the right expert, not a large internal team or a full-time CISO.</div>
         <div class="aud-q">"Is this really as serious as they say? How much work is it?"</div>
       </div>
     </div>
   </section>
 
   <!-- SELF-ASSESSMENT -->
-  <div class="alt-wrap">
+  <div class="alt-wrap" id="assessment">
     <section class="section">
       <div class="assess-intro">
         <div class="eyebrow">Quick self-assessment</div>
@@ -549,7 +552,7 @@
       <div class="assess-wrap">
         <div class="assess-options">
 
-          <div class="assess-opt" onclick="selectOption(this, 1)">
+          <div class="assess-opt">
             <div class="assess-num">1</div>
             <div class="assess-text">
               <div class="assess-title">Starting out</div>
@@ -557,7 +560,7 @@
             </div>
           </div>
 
-          <div class="assess-opt" onclick="selectOption(this, 2)">
+          <div class="assess-opt">
             <div class="assess-num">2</div>
             <div class="assess-text">
               <div class="assess-title">In progress</div>
@@ -565,7 +568,7 @@
             </div>
           </div>
 
-          <div class="assess-opt" onclick="selectOption(this, 3)">
+          <div class="assess-opt">
             <div class="assess-num">3</div>
             <div class="assess-text">
               <div class="assess-title">Documented but unverified</div>
@@ -573,7 +576,7 @@
             </div>
           </div>
 
-          <div class="assess-opt" onclick="selectOption(this, 4)">
+          <div class="assess-opt">
             <div class="assess-num">4</div>
             <div class="assess-text">
               <div class="assess-title">Compliant but ageing</div>
@@ -581,7 +584,7 @@
             </div>
           </div>
 
-          <div class="assess-opt" onclick="selectOption(this, 5)">
+          <div class="assess-opt">
             <div class="assess-num">5</div>
             <div class="assess-text">
               <div class="assess-title">Actively maintained</div>
@@ -638,7 +641,7 @@
           <svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="6"/><path d="M8 5v3l2 2"/></svg>
         </div>
         <div class="help-h">Ongoing vCISO retainer</div>
-        <div class="help-b">Annual independent framework review, quarterly MSP oversight, tabletop exercises, governing body reporting, and incident response support — without a full-time CISO.</div>
+        <div class="help-b">Annual independent framework review, quarterly MSP oversight, tabletop exercises, governing body reporting, and incident response support, without a full-time CISO.</div>
         <div class="help-tag">For all positions</div>
       </div>
     </div>
@@ -651,7 +654,7 @@
     <div class="contact-wrap">
       <div class="eyebrow" style="text-align:center;">Get in touch</div>
       <div class="sec-title" style="text-align:center;">Let's start with a conversation.</div>
-      <p class="sec-body" style="margin: 0 auto 0.5rem; text-align:center;">No obligation. No pressure. Just clarity on where you stand and what — if anything — needs to happen next.</p>
+      <p class="sec-body" style="margin: 0 auto 0.5rem; text-align:center;">No obligation. No pressure. Just clarity on where you stand and what, if anything, needs to happen next.</p>
 
       <div class="contact-form">
         <div class="form-row">
@@ -692,7 +695,7 @@
         </div>
         <div class="cd-item">
           <div class="cd-label">Phone</div>
-          <a href="tel:0861551105">0861 551 105</a>
+          <a href="tel:0870878749">087 087 8749</a>
         </div>
         <div class="cd-item">
           <div class="cd-label">Office</div>
@@ -768,6 +771,24 @@
         res.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }, 120);
     }
+
+    // If coming back from the quiz with a ?tier=X param, pre-select that position
+    document.addEventListener('DOMContentLoaded', function () {
+      var params = new URLSearchParams(window.location.search);
+      var tier = parseInt(params.get('tier'), 10);
+      if (!tier || tier < 1 || tier > 5) return;
+
+      var opts = document.querySelectorAll('.assess-opt');
+      var target = opts[tier - 1];
+      if (!target) return;
+
+      selectOption(target, tier);
+
+      var section = document.getElementById('assessment');
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
   </script>
 
 </body>
